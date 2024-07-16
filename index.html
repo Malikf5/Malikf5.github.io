@@ -10,7 +10,11 @@
 		.light-mode {
 			color: black;
 			background-color: white;}
-
+		.lightDiv {
+		background-color: white;
+		color: black;
+		}
+		
 		h1.whit {color: white;
 		 text-align: left;}
 
@@ -113,7 +117,7 @@
 	<h2> <br> </h2>
 </div>
 
-<div style="overflow:auto">
+<div style="overflow:auto" id="myDiv">
 	<div class="menu">
 		<h1 class="whit" style="text-align:center;"> Project Links </h1>
 		<a href="https://github.com/Malikf5/Python-Quiz-game"> Quiz Game </a>
@@ -212,17 +216,20 @@
 	</div>
 	
 <button onclick="myFunction()">Toggle dark mode On/Off</button>
-
-<script>
-function myFunction() {
-   var element = document.body;
-   element.classList.toggle("light-mode");
-}
-</script>
 	
 	
 	
 	
 </div>
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("light-mode");
+   var element = document.getElementById("myDiv");
+   element.classList.add("lightDiv");
+}
+</script>
+
 </body>
 </html>
