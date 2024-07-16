@@ -6,6 +6,9 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 		body {background-color: black;}
+		.light-mode {
+		background-color: white;
+		color: black;}
 
 		h1.whit {color: white;
 		 text-align: left;}
@@ -206,6 +209,19 @@
 				Linkedin: <a href ="https://www.linkedin.com/in/malik-folkesd/">My Profile </a><br>
 			</address>
 	</div>
+	
+<button onclick="myFunction()">Toggle dark mode On/Off</button>
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("light-mode");
+}
+</script>
+	
+	
+	
+	
 </div>
 </body>
 </html>
