@@ -21,7 +21,6 @@
         body.dark-mode {
             background-color: #121212;
             color: #ffffff;
-			
         }
 
         .container {
@@ -82,7 +81,7 @@
             }
         }
 
-        /* Style for results table */
+        /* Style for results table in light mode */
         table {
             margin: 20px auto;
             border-collapse: collapse;
@@ -91,13 +90,41 @@
 
         table, th, td {
             border: 1px solid black;
-			color: black;
         }
 
         th, td {
             padding: 10px;
             text-align: center;
         }
+
+        /* Table styles for light mode */
+        body.light-mode table {
+            background-color: #f9f9f9;
+            color: #000000;
+        }
+
+        body.light-mode th {
+            background-color: #e0e0e0;
+        }
+
+        body.light-mode td {
+            background-color: #ffffff;
+        }
+
+        /* Table styles for dark mode */
+        body.dark-mode table {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        body.dark-mode th {
+            background-color: #555555;
+        }
+
+        body.dark-mode td {
+            background-color: #444444;
+        }
+
     </style>
 </head>
 <body>
