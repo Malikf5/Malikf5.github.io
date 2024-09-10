@@ -1,0 +1,67 @@
+const numbers = Array.from({ length: 100 }, (_, i) => i + 1).sort(() => Math.random() - 0.5);  // Shuffle numbers 1-100
+let currentNumbers = [...numbers];
+let names = currentNumbers.reduce((obj, num) => {
+    obj[num] = `Name${num}`;  // Associate a name with each number
+    return obj;
+}, {});
+
+const table = document.getElementById('roulette-table');
+const resultDisplay = document.getElementById('spin-result');
+const spinButton = document.getElementById('spin-button');
+
+// Create the table
+function createTable() {
+    table.innerHTML = '';
+    currentNumbers.forEach(num => {
+        const numDiv = document.createElement('div');
+        numDiv.textContent = num;
+        numDiv.id = `num-${num}`;
+        table.appendChild(numDiv);
+    });
+}
+
+// Spin the wheel
+function spinWheel() {
+    if (currentNumbers.length === 0) {
+        resultDisplay.textContent = 'All numbers have been removed!';
+        return;
+    }
+
+    // Disable the button while spinning
+    spinButton.disabled = true;
+
+    // Randomly pick a number after a delay
+    setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * currentNumbers.length);
+        const selectedNumber = currentNumbers[randomIndex];
+
+        // Show the result
+        resultDisplay.textContent = `The ball landed on: ${selectedNumber} - ${names[selectedNumber]}`;
+
+        // Add spinning effect to the selected number
+        const selectedDiv = document.getElementById(`num-${selectedNumber}`);
+        selectedDiv.classList.add('spin');
+
+        // After the spin finishes, highlight the number and remove it
+        setTimeout(() => {
+            selectedDiv.classList.remove('spin');
+            selectedDiv.classList.add('selected');
+            
+            // Remove the number after a brief pause
+            setTimeout(() => {
+                selectedDiv.remove();
+                currentNumbers.splice(randomIndex, 1);
+                
+                // Re-enable the button
+                spinButton.disabled = false;
+            }, 1000);
+        }, 2000);  // Spin duration
+
+    }, 500);  // Delay before the wheel starts "spinning"
+}
+
+// Initialize the table
+createTable();
+
+// Add event listener for the button
+spinButton.addEventListener('click', spinWheel);
