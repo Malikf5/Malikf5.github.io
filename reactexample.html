@@ -52,6 +52,12 @@
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
+            animation: spinEffect 2s ease-in-out; /* Button spin animation */
+        }
+
+        @keyframes spinEffect {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
         }
 
         .spin {
@@ -90,7 +96,6 @@
         <div id="roulette-table"></div>
         <div id="spin-result"></div>
         <button id="spin-button">Spin the Wheel</button>
-        <button id="clear-progress">Clear Progress</button>
 
         <!-- Table for results -->
         <h2>Results</h2>
@@ -106,6 +111,7 @@
     </div>
 
     <script>
+        // List of 110 movie titles
         const movieTitles = [
             "Halloweentown", "Halloweentown 2: Kalabar's Revenge", "Halloweentown High", "Return to Halloweentown", 
             "Twitches", "Twitches Too", "Scream Team", "Don't Look Under the Bed", "Haunted Mansion", "Hocus Pocus",
@@ -132,44 +138,14 @@
             "28 Days Later", "28 Weeks Later", "Practical Magic", "The Little Vampire"
         ];
 
-        let numbers = Array.from({ length: 110 }, (_, i) => i + 1).sort(() => Math.random() - 0.5);  // Shuffle numbers 1-110
-        let currentNumbers = [...numbers];
+        const numbers = Array.from({ length: 110 }, (_, i) => i + 1);
+        let currentNumbers = loadProgress('currentNumbers') || [...numbers].sort(() => Math.random() - 0.5); // Shuffle numbers 1-110
+        let savedResults = loadProgress('savedResults') || [];
 
         const table = document.getElementById('roulette-table');
         const resultDisplay = document.getElementById('spin-result');
         const spinButton = document.getElementById('spin-button');
-        const clearButton = document.getElementById('clear-progress');
         const resultsTableBody = document.querySelector('#results-table tbody');
-
-        // Load saved progress from localStorage
-        function loadProgress() {
-            const savedNumbers = JSON.parse(localStorage.getItem('currentNumbers'));
-            const savedResults = JSON.parse(localStorage.getItem('results'));
-
-            if (savedNumbers) {
-                currentNumbers = savedNumbers;
-            }
-
-            if (savedResults) {
-                savedResults.forEach(result => {
-                    addResultToTable(result.number, result.title);
-                });
-            }
-
-            createTable();
-        }
-
-        // Save current progress to localStorage
-        function saveProgress() {
-            localStorage.setItem('currentNumbers', JSON.stringify(currentNumbers));
-            const results = [];
-            document.querySelectorAll('#results-table tbody tr').forEach(row => {
-                const number = row.children[0].textContent;
-                const title = row.children[1].textContent;
-                results.push({ number, title });
-            });
-            localStorage.setItem('results', JSON.stringify(results));
-        }
 
         // Create the table with numbers
         function createTable() {
@@ -182,6 +158,14 @@
             });
         }
 
+        // Load saved results to results table
+        function loadResults() {
+            resultsTableBody.innerHTML = '';
+            savedResults.forEach(({ number, movieTitle }) => {
+                addResultToTable(number, movieTitle);
+            });
+        }
+
         // Spin the wheel
         function spinWheel() {
             if (currentNumbers.length === 0) {
@@ -189,14 +173,78 @@
                 return;
             }
 
+            // Disable the button while spinning
             spinButton.disabled = true;
 
+            // Randomly pick a number after a delay
             setTimeout(() => {
                 const randomIndex = Math.floor(Math.random() * currentNumbers.length);
                 const selectedNumber = currentNumbers[randomIndex];
-                const movieTitle = movieTitles[selectedNumber - 1]; // Subtract 1 because the array is zero-indexed
 
+                // Get the corresponding movie title
+                const movieTitle = movieTitles[selectedNumber - 1];  // Subtract 1 because the array is zero-indexed
+
+                // Show the result
                 resultDisplay.textContent = `The ball landed on: ${selectedNumber} - ${movieTitle}`;
 
+                // Add spinning effect to the selected number
                 const selectedDiv = document.getElementById(`num-${selectedNumber}`);
-                selectedDiv.classList
+                selectedDiv.classList.add('spin');
+
+                // After the spin finishes, highlight the number and remove it
+                setTimeout(() => {
+                    selectedDiv.classList.remove('spin');
+                    selectedDiv.classList.add('selected');
+
+                    // Add the result to the table and save progress
+                    addResultToTable(selectedNumber, movieTitle);
+                    savedResults.push({ number: selectedNumber, movieTitle });
+                    saveProgress('savedResults', savedResults);
+
+                    // Remove the number from the list
+                    currentNumbers.splice(randomIndex, 1);
+                    saveProgress('currentNumbers', currentNumbers);
+
+                    // Re-enable the button
+                    spinButton.disabled = false;
+
+                    createTable();  // Update table after removing number
+                }, 2000);
+            }, 500);
+        }
+
+        // Add result to the results table
+        function addResultToTable(number, movieTitle) {
+            const row = document.createElement('tr');
+            const numberCell = document.createElement('td');
+            const titleCell = document.createElement('td');
+
+            numberCell.textContent = number;
+            titleCell.textContent = movieTitle;
+
+            row.appendChild(numberCell);
+            row.appendChild(titleCell);
+
+            resultsTableBody.appendChild(row);
+        }
+
+        // Save progress to localStorage
+        function saveProgress(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        // Load progress from localStorage
+        function loadProgress(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        }
+
+        // Initialize the game
+        createTable();
+        loadResults();
+
+        // Attach spin event to button
+        spinButton.addEventListener('click', spinWheel);
+    </script>
+</body>
+</html>
