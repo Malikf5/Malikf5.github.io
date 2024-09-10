@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roulette Game</title>
+    <title>Spooky Movie Roulette</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
 
         #roulette-table {
             display: grid;
-            grid-template-columns: repeat(10, 50px);
+            grid-template-columns: repeat(11, 50px);
             grid-gap: 10px;
             justify-content: center;
             margin: 20px auto;
@@ -72,29 +72,81 @@
                 transform: rotate(1440deg); /* 4 full spins */
             }
         }
+
+        /* Style for results table */
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Roulette Game (1-100)</h1>
+        <h1>Roulette Movie Game (1-110)</h1>
         <div id="roulette-table"></div>
         <div id="spin-result"></div>
         <button id="spin-button">Spin the Wheel</button>
+
+        <!-- Table for results -->
+        <h2>Results</h2>
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Movie Title</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
     <script>
-        const numbers = Array.from({ length: 100 }, (_, i) => i + 1).sort(() => Math.random() - 0.5);  // Shuffle numbers 1-100
+        // List of 110 movie titles
+        const movieTitles = [
+            "Halloweentown", "Halloweentown 2: Kalabar's Revenge", "Halloweentown High", "Return to Halloweentown", 
+            "Twitches", "Twitches Too", "Scream Team", "Don't Look Under the Bed", "Haunted Mansion", "Hocus Pocus",
+            "Mom's Got a Date With a Vampire", "The Nightmare Before Christmas", "Phantom of the Megaplex", 
+            "Scary Godmother: Halloween Spooktacular", "Scary Godmother 2: The Revenge of Jimmy", "The Conjuring", 
+            "The Conjuring 2", "The Conjuring: The Devil Made me Do It", "The Nun", "Annabelle", 
+            "Annabelle: Comes Home", "Annabelle: Creation", "The Curse Of Llorona", "IT", "IT: Chapter 2", 
+            "Insidious", "Insidious 2", "Insidious Chapter 3", "Insidious: Last Key", "The Ring", 
+            "The Ring 2", "The Grudge", "Hereditary", "Drag Me to Hell", "Apostle", "The Witch", 
+            "Sinister", "Jeepers Creepers", "Jeepers Creepers 2", "Jeepers Creepers 3", "The Exorcism of Emily Rose", 
+            "The Ritual", "As Above so Below", "Get Out", "Halloween (2018)", "Halloween Kills", 
+            "Halloween Ends", "A Nightmare on Elm Street (2010)", "Freddy vs Jason", "Jason X", "Jason Goes to Hell", 
+            "Friday the 13th (2009)", "Candyman", "Orphan", "Orphan: First Kill", "The Craft", 
+            "Scream", "Scream 2", "Scream 3", "Scream 4", "Scream (2022)", 
+            "Midsommar", "The Invisible Man", "Pet Semetary", "Don't Breathe", "Don't Breathe 2", 
+            "The Shining", "Doctor Sleep", "Escape Room", "A Quiet Place", "A Quiet Place 2", 
+            "Stay Alive", "The Pope's Exorcist", "The Menu", "Parasite", "You're Next", 
+            "Malignant", "Fear Street Part 1: 1994", "Fear Street Part 2: 1978", "Fear Street Part 3: 1666", "The Old Ways", 
+            "Missing", "No One Gets Out Alive", "Hellhole", "Umma", "Dawn of the Dead", 
+            "Shaun of the Dead", "Cocaine Bear", "Smile", "M3GAN", "Train to Busan", 
+            "Paranormal Activity", "Paranormal Activity 2", "Evil Dead Rises", "#Alive", "The Wailing", 
+            "I Saw the Devil", "Thirst", "A Tale of Two Sisters", "Ghostbusters", "The Witches (1990)", 
+            "Sleepy Hollow", "Monster House", "Ghostbusters 2", "Zombieland", "Zombieland: Double Tap", 
+            "28 Days Later", "28 Weeks Later", "Practical Magic", "The Little Vampire"
+        ];
+
+        const numbers = Array.from({ length: 110 }, (_, i) => i + 1).sort(() => Math.random() - 0.5);  // Shuffle numbers 1-110
         let currentNumbers = [...numbers];
-        let names = currentNumbers.reduce((obj, num) => {
-            obj[num] = `Name${num}`;  // Associate a name with each number
-            return obj;
-        }, {});
 
         const table = document.getElementById('roulette-table');
         const resultDisplay = document.getElementById('spin-result');
         const spinButton = document.getElementById('spin-button');
+        const resultsTableBody = document.querySelector('#results-table tbody');
 
-        // Create the table
+        // Create the table with numbers
         function createTable() {
             table.innerHTML = '';
             currentNumbers.forEach(num => {
@@ -120,8 +172,11 @@
                 const randomIndex = Math.floor(Math.random() * currentNumbers.length);
                 const selectedNumber = currentNumbers[randomIndex];
 
+                // Get the corresponding movie title
+                const movieTitle = movieTitles[selectedNumber - 1];  // Subtract 1 because the array is zero-indexed
+
                 // Show the result
-                resultDisplay.textContent = `The ball landed on: ${selectedNumber} - ${names[selectedNumber]}`;
+                resultDisplay.textContent = `The ball landed on: ${selectedNumber} - ${movieTitle}`;
 
                 // Add spinning effect to the selected number
                 const selectedDiv = document.getElementById(`num-${selectedNumber}`);
@@ -131,12 +186,15 @@
                 setTimeout(() => {
                     selectedDiv.classList.remove('spin');
                     selectedDiv.classList.add('selected');
-                    
+
+                    // Add the result to the table
+                    addResultToTable(selectedNumber, movieTitle);
+
                     // Remove the number after a brief pause
                     setTimeout(() => {
                         selectedDiv.remove();
                         currentNumbers.splice(randomIndex, 1);
-                        
+
                         // Re-enable the button
                         spinButton.disabled = false;
                     }, 1000);
@@ -145,11 +203,22 @@
             }, 500);  // Delay before the wheel starts "spinning"
         }
 
-        // Initialize the table
-        createTable();
+        // Add result to the table
+        function addResultToTable(number, movieTitle) {
+            const row = document.createElement('tr');
+            const numberCell = document.createElement('td');
+            const titleCell = document.createElement('td');
 
-        // Add event listener for the button
+            numberCell.textContent = number;
+            titleCell.textContent = movieTitle;
+
+            row.appendChild(numberCell);
+            row.appendChild(titleCell);
+            resultsTableBody.appendChild(row);
+        }
+
         spinButton.addEventListener('click', spinWheel);
+        createTable();
     </script>
 </body>
 </html>
