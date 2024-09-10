@@ -17,10 +17,44 @@
             color: #000000;
         }
 
+        body.light-mode #roulette-table div {
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            color: #000;
+        }
+
+        body.light-mode table {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            color: #000;
+        }
+
+        body.light-mode th, body.light-mode td {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+
         /* Dark theme */
         body.dark-mode {
             background-color: #121212;
             color: #ffffff;
+        }
+
+        body.dark-mode #roulette-table div {
+            background-color: #333333;
+            border: 1px solid #555555;
+            color: #ffffff;
+        }
+
+        body.dark-mode table {
+            background-color: #333333;
+            border: 1px solid #555555;
+            color: #ffffff;
+        }
+
+        body.dark-mode th, body.dark-mode td {
+            background-color: #2a2a2a;
+            border: 1px solid #444444;
         }
 
         .container {
@@ -38,12 +72,10 @@
         #roulette-table div {
             width: 50px;
             height: 50px;
-            background-color: #f4f4f4;
-            border: 1px solid #ccc;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         #roulette-table div.selected {
@@ -81,11 +113,12 @@
             }
         }
 
-        /* Style for results table in light mode */
+        /* Style for results table */
         table {
             margin: 20px auto;
             border-collapse: collapse;
             width: 80%;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         table, th, td {
@@ -95,36 +128,8 @@
         th, td {
             padding: 10px;
             text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        /* Table styles for light mode */
-        body.light-mode table {
-            background-color: #f9f9f9;
-            color: #000000;
-        }
-
-        body.light-mode th {
-            background-color: #e0e0e0;
-        }
-
-        body.light-mode td {
-            background-color: #ffffff;
-        }
-
-        /* Table styles for dark mode */
-        body.dark-mode table {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        body.dark-mode th {
-            background-color: #555555;
-        }
-
-        body.dark-mode td {
-            background-color: #444444;
-        }
-
     </style>
 </head>
 <body>
@@ -307,7 +312,7 @@
             }
         }
 
-        // Apply theme based on saved preference
+        // Apply saved theme
         function applyTheme() {
             if (themePreference === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -318,15 +323,14 @@
             }
         }
 
-        // Initialize the game
-        createTable();
-        loadResults();
-        applyTheme();
-
-        // Attach events
+        // Initialize game
         spinButton.addEventListener('click', spinWheel);
         resetButton.addEventListener('click', resetGame);
         themeToggle.addEventListener('click', toggleTheme);
+
+        applyTheme();
+        createTable();
+        loadResults();
     </script>
 </body>
 </html>
