@@ -1,347 +1,2040 @@
-		<!DOCTYPE html>
+
+/
+Claude finished the response
+
+Dismantled triquetra, restored pentagram, centered spiders, enhanced visibility
+Dismantled triquetra, restored pentagram, centered spiders, enhanced visibility
+Let's work through these fixes one at a time. First, the triquetra/pentagram/hub rebuild.
+
+
+Ran a command, viewed a file
+Ran a command, viewed a file
+Now let's rewrite the hub CSS: remove triquetra styling, add the image-fill layer, restore the original bold pentagram:
+
+
+Replace triquetra CSS with an image-fill layer for the hub, and restore the original simple bold pentagram styling
+Replace triquetra CSS with an image-fill layer for the hub, and restore the original simple bold pentagram styling
+Now the hub markup — replace triquetra elements with the image layer + restored pentagram, and add the image URL control:
+
+
+Viewed a file, edited a file
+Viewed a file, edited a file
+Now let's remove the old buildTriquetra JS function and wire up the new hub-image controls:
+
+
+Viewed 3 files
+Viewed 3 files
+Now let's replace this whole function with the hub-image logic:
+
+
+Replace buildTriquetra with hub-image URL handling logic
+Replace buildTriquetra with hub-image URL handling logic
+Now let's add the hubImage key and wire initHubImageControl() into init, replacing the old buildTriquetra() call:
+
+
+Viewed 2 files, edited 2 files, ran a command
+Viewed 2 files, edited 2 files, ran a command
+Now let's fix the spider centering issue:
+
+
+Diagnosed CSS selector mismatch preventing intended visual transformation
+Diagnosed CSS selector mismatch preventing intended visual transformation
+Now let's improve fence visibility:
+
+
+Ran a command, viewed a file, edited a file
+Ran a command, viewed a file, edited a file
+Now let's fix the background skull shape — replace the too-round design with the proper skull silhouette used in Watch History:
+
+
+Ran a command, viewed a file
+Ran a command, viewed a file
+Let's replace with the proper skull silhouette (same construction as the Watch History skull badge, without the number):
+
+
+Replace ball-shaped background skulls with the proper tapered skull silhouette (cranium narrowing to jaw), matching the watch-history skull shape
+Replace ball-shaped background skulls with the proper tapered skull silhouette (cranium narrowing to jaw), matching the watch-history skull shape
+Now let's fix the movie bank header column alignment:
+
+
+Scrutinized badge alignment inconsistencies across component sections
+Scrutinized badge alignment inconsistencies across component sections
+The issue: the header's "Number" label is wider than the row's #5 badges (which only have min-width, not a fixed width), pushing "Title" out of alignment. Let's fix both the CSS and the label text:
+
+
+Edited 2 files, ran a command, viewed a file
+Edited 2 files, ran a command, viewed a file
+Now let's shorten the header label from "Number" to "No." so it fits within the fixed-width column:
+
+
+Ran a command, edited a file
+Ran a command, edited a file
+Now let's fix the Watch History skull styling — thinner outline and a visible border around the number:
+
+
+Ran a command, viewed a file, edited a file
+Ran a command, viewed a file, edited a file
+Now let's run full validation checks:
+
+
+Ran 3 commands
+Ran 3 commands
+All referenced IDs match the markup we wrote. Let's copy the final file to outputs.
+
+
+Ran a command, read a file
+Ran a command, read a file
+All done:
+
+Center of the wheel: blank by default now. There's a small "Set center image" link under the wheel controls — click it, paste an image URL, hit Apply, and it fills that circle (clipped round), saved locally so it sticks between visits. "Clear" removes it.
+Pentagram: reverted to the original plain five-pointed star, full size, sitting on top of the image circle — no more shuriken.
+Spiders: fixed the centering bug — thread and spider were sized independently before, which threw off alignment. Both now anchor to the exact same point.
+Fence: opacity roughly doubled and switched to a bolder color, should read clearly now.
+Background skulls: swapped the round "ball" shape for the same tapered cranium-to-jaw silhouette used in the Watch History badges (teeth notches built into the outline, plus eyes).
+Movie bank header: the "Number" label was wider than the actual number column, which pushed "Title" out of alignment — fixed column widths on both header and rows so they now line up, and shortened the label to "No."
+Watch History skulls: outline thinned down, and the number now has a subtle light border around it so it stays readable against the grey fill.
+
+Movie roulette
+Code · HTML 
+Great the spiders are mostly centered on the string, too bad those spiders aren't on the strings you have them moving up and down below the strings, fix that and have them actually be on the string the entire time. Easy way would be just extend the string length to stop somewhere near the lower middle section of the spider's main body.
+
+The pumpkins are only pumpkins not Jack o Lanterns fix that. Remove the basic spider design and make them black with red eyes but only the on moving ones.
+
+Make the Pentagram smaller around 1/4-1/2 the size right now, put it in another circle which will then be placed on top of the image I talked about previously. Leave the current image circle size alone.
+
+Add a slightly very slight border around the fence to make them more visible, change design for witches their brooms look terrible and their hats aren't pointy. 
+
+I want to have the results of the spin be the same no matter who accesses it, not local storge.
+
+
+Debugged spider threading, redesigned pumpkins and witches, scaled pentagram into medallion, explored cross-user storage limitations
+Debugged spider threading, redesigned pumpkins and witches, scaled pentagram into medallion, explored cross-user storage limitations
+Let's tackle these one at a time. First, the spider thread fix:
+
+
+Calibrated thread length and bob amplitude for spider positioning
+Calibrated thread length and bob amplitude for spider positioning
+Now let's make the spiders black with red eyes, and check the pumpkin markup:
+
+
+Diagnosed styling issue preventing spiders from inheriting theme colors properly
+Diagnosed styling issue preventing spiders from inheriting theme colors properly
+Now let's fix the pumpkins — make all instances proper jack-o-lanterns with carved faces:
+
+
+Ran a command, viewed a file
+Ran a command, viewed a file
+Confirmed — pumpkin--3 is missing the carved face. Let's fix it:
+
+
+Add the carved jack-o-lantern face to pumpkin--3, which was missing it
+Add the carved jack-o-lantern face to pumpkin--3, which was missing it
+
+Add the carved jack-o-lantern face to pumpkin--3, which was missing it
+movie-roulette.html
++9
+-6
+Done
+Now let's redesign the witches with a proper pointy hat and recognizable broom. Let's view the current witch CSS and markup:
+
+
+View witch positioning CSS
+View witch positioning CSS
+Good, positions can stay as-is. Now let's replace the witch SVG markup with the redesigned version (pointy hat, real broom with bristles):
+
+
+Viewed a file, edited a file
+Viewed a file, edited a file
+Now let's rebuild the hub: smaller pentagram inside a new inner circle, sitting on top of the (unchanged) image circle:
+
+
+Ran a command, viewed a file, edited a file
+Ran a command, viewed a file, edited a file
+Now let's add CSS for the new inner circle:
+
+
+Viewed a file, edited a file
+Viewed a file, edited a file
+Now let's add a slight border to the fence:
+
+
+Viewed 2 files, ran a command
+Viewed 2 files, ran a command
+Rects have no explicit fill (defaulting to black regardless of theme). Let's fix that to use currentColor and add a subtle border:
+
+
+Give fence rects theme-aware fill and a very slight border for extra visibility
+Give fence rects theme-aware fill and a very slight border for extra visibility
+Now let's tackle the shared-results storage. Let's view the current data loading setup:
+
+
+Ran a command, viewed a file
+Ran a command, viewed a file
+Now let's replace this with async shared-storage-aware loading:
+
+
+Add shared-storage helpers (window.storage when available, with localStorage fallback) and switch movies/pool/results to load asynchronously from shared storage
+Add shared-storage helpers (window.storage when available, with localStorage fallback) and switch movies/pool/results to load asynchronously from shared storage
+Now let's update all the save(KEYS.movies/pool/results, ...) call sites to use saveShared, and update init() to asynchronously load the shared state first:
+
+
+Viewed 4 files, edited 4 files, ran a command
+Viewed 4 files, edited 4 files, ran a command
+Now let's update init() to asynchronously load the shared state before rendering:
+
+
+Orchestrated multiple design refinements and backend architecture adjustments
+Orchestrated multiple design refinements and backend architecture adjustments
+Let's verify everything still works correctly:
+
+
+Ran 3 commands
+Ran 3 commands
+Let's also double-check there are no remaining save(KEYS.movies/pool/results calls that were missed:
+
+
+Ran a command
+Ran a command
+All clean. Let's copy the final file to outputs and present it.
+
+
+Ran a command, read a file
+Ran a command, read a file
+Here's what changed:
+
+Spiders on their strings: extended the thread so it reaches into the spider's body at every point of the bob, and trimmed the bob distance a bit so it never outruns the thread — no more looking detached.
+Jack-o-lanterns: the third pumpkin was missing its carved face — all four now have eyes/nose/mouth cutouts.
+Spiders: solid black now, red eyes, replacing the muted grey look.
+Pentagram: back to the original plain five-point star shape (no more shuriken), just scaled down to about 1/3 of its old size, sitting inside a new smaller circle of its own — which sits on top of the (unchanged) image circle.
+Witches: redesigned — sharp pointy hat instead of the flat triangle, and an actual broom with a bristle fan instead of a bare stick.
+Fence: fixed a bug where it was rendering plain black regardless of theme, boosted opacity further, and added a subtle stroke outline on each picket.
+Movie bank "Title" column: the header's badge column was sized loosely (min-width) while the row's badge had the same, but "Number" as label text was wider than the "#5" style numbers, pushing Title out of line — fixed both to a matching fixed width and shortened the label to "No."
+Watch History skulls: thinner outline, plus a light outline around the number itself so it reads clearly against the grey fill.
+On shared spin results — this one has a real constraint worth being upfront about. localStorage is inherently private to one browser; there's no way around that with pure client-side code. I wired up shared storage that works only while this page is rendered inside Claude.ai (it uses an API Claude.ai injects for exactly this purpose). The moment you host this standalone on GitHub Pages — which is where you said this lives — that API won't exist, and it'll quietly fall back to localStorage, so results go back to being per-browser there.
+
+Getting truly shared results on a real hosted site needs an actual backend. I left comments in the code (right above the loadShared/saveShared functions) sketching two low-effort paths for that later — a hosted key-value API like jsonbin.io/npoint.io, or a small serverless function with a database like Supabase or Firebase — without setting one up myself, since that needs an account/credentials of yours.
+
+
+Movie roulette
+Code · HTML 
+
+You messed up the spiders, I wanted the ones with strings and red eyes to retain their light colored legs. I wanted the basic spiders that are like grey in color with nothing on them to be turned black and given red eyes and a border so they match the spiders with thread. Just remove all non black spiders. 
+
+
+
+Give the black spiders a very slight border to help with visibility.
+
+
+
+The pumpkins still aren't being carved just remove them. Remove the witches on their brooms as they're just bad and backwards, replace it with simple brooms and witch hats.
+
+
+
+The scary fence looks like shit now, I wanted it to be black or something similar with a slight border that will help with visibility. 
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+
+
+Movie roulette · HTML
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roulette Movie Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Light theme */
-        body.light-mode {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        /* Dark theme */
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        /* Roulette table styling */
-        #roulette-table {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 20px auto;
-            border-radius: 50%;
-            background-color: green;
-            border: 5px solid black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Circle of numbers around the table */
-        #roulette-table div {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: black;
-            font-weight: bold;
-        }
-
-        /* Numbers placed around the circle */
-        .number {
-            transform-origin: 150px;
-        }
-
-        /* Animation for table spinning */
-        .spin-table {
-            animation: spinTable 3s ease-out forwards;
-        }
-
-        @keyframes spinTable {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(1440deg); /* 4 full spins */
-            }
-        }
-
-        /* Ball rolling animation */
-        #ball {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            border-radius: 50%;
-            z-index: 1;
-            animation: rollBall 3s ease-out forwards;
-        }
-
-        @keyframes rollBall {
-            0% {
-                transform: rotate(0deg) translate(0px);
-            }
-            100% {
-                transform: rotate(1440deg) translate(150px); /* Simulate ball rolling */
-            }
-        }
-
-        /* Style for results table */
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        #spin-button, #reset-button, #theme-toggle {
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        /* Light mode button background */
-        body.light-mode #spin-button, body.light-mode #reset-button, body.light-mode #theme-toggle {
-            background-color: #ddd;
-            color: #000;
-        }
-
-        /* Dark mode button background */
-        body.dark-mode #spin-button, body.dark-mode #reset-button, body.dark-mode #theme-toggle {
-            background-color: #444;
-            color: #fff;
-        }
-
-        #spin-result {
-            margin-top: 20px;
-            font-size: 24px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Night Reel — Movie Roulette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4ecdd;
+    --panel:#fffaf1;
+    --panel-2:#f7ecd9;
+    --ink:#241a30;
+    --ink-soft:#5a5065;
+    --accent:#d9600f;
+    --accent-2:#6b32b8;
+    --danger:#a3132f;
+    --border: rgba(36,26,48,0.14);
+    --wheel-a:#241a30;
+    --wheel-b:#3c2454;
+    --wheel-text:#f4ecdd;
+    --glow: rgba(217,96,15,0.35);
+  }
+  body.dark-mode{
+    --bg:#0c0a13;
+    --panel:#17121f;
+    --panel-2:#1e1729;
+    --ink:#f2ece0;
+    --ink-soft:#a79ab0;
+    --accent:#ff7a29;
+    --accent-2:#a06cf0;
+    --danger:#ff5470;
+    --border: rgba(242,236,224,0.12);
+    --wheel-a:#0c0a13;
+    --wheel-b:#2a1c3e;
+    --wheel-text:#f2ece0;
+    --glow: rgba(255,122,41,0.45);
+  }
+ 
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    background:
+      radial-gradient(ellipse at top, rgba(107,50,184,0.10), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    transition:background-color .4s ease, color .4s ease;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:28px 20px 60px;
+  }
+ 
+  /* Top bar */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:8px;
+  }
+  .icon-btn{
+    width:40px;height:40px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    font-size:17px;
+    transition:transform .15s ease, background .3s ease;
+  }
+  .icon-btn:hover{transform:translateY(-1px);}
+  .icon-btn:active{transform:translateY(0);}
+ 
+  header.hero{
+    text-align:center;
+    margin:6px 0 30px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--accent);
+    margin:0 0 6px;
+  }
+  h1{
+    font-family:'Cinzel', serif;
+    font-weight:700;
+    font-size:clamp(32px,6vw,46px);
+    margin:0 0 8px;
+    letter-spacing:.02em;
+  }
+  .tagline{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0;
+  }
+ 
+  /* Wheel */
+  .wheel-stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:10px auto 18px;
+  }
+  .wheel-frame{
+    position:relative;
+    width:min(94vw,520px);
+    aspect-ratio:1/1;
+  }
+  .pointer{
+    position:absolute;
+    top:-8px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;height:0;
+    border-left:14px solid transparent;
+    border-right:14px solid transparent;
+    border-top:24px solid var(--accent);
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));
+    z-index:3;
+    animation:flicker 3.2s ease-in-out infinite;
+  }
+  @keyframes flicker{
+    0%,100%{opacity:1;}
+    47%{opacity:1;}
+    48%{opacity:.75;}
+    50%{opacity:1;}
+    76%{opacity:1;}
+    77%{opacity:.85;}
+    79%{opacity:1;}
+  }
+  .wheel-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    box-shadow:
+      0 0 0 6px var(--panel),
+      0 0 0 8px var(--border),
+      0 18px 40px -14px rgba(0,0,0,.45),
+      0 0 60px -12px var(--glow);
+    overflow:hidden;
+  }
+  #wheel-canvas{
+    display:block;
+    width:100%;
+    height:100%;
+    transform-origin:50% 50%;
+    transform:rotate(0deg);
+    transition:transform 4.2s cubic-bezier(.17,.67,.16,.99);
+  }
+  /* Hub: sits outside the rotating canvas, so it never spins. The circle
+     is left blank (or filled with a user-provided image), with the
+     pentagram drawn on top of it. */
+  .hub{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:38%;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    background:var(--accent);
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 4px var(--panel), 0 2px 14px rgba(0,0,0,.45);
+    z-index:2;
+    color:var(--wheel-text);
+  }
+  .hub-image{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+  }
+  .hub svg{position:relative; z-index:1; width:92%; height:92%;}
+  .hub-inner-circle{
+    fill:var(--accent);
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-opacity:.9;
+    filter:drop-shadow(0 2px 5px rgba(0,0,0,.4));
+  }
+  .hub-pentagram{
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2.4;
+    stroke-linejoin:round;
+    filter:drop-shadow(0 0 2px rgba(0,0,0,.5));
+  }
+  .hub-image-control{
+    margin-top:2px;
+    font-size:12px;
+  }
+  .link-btn{
+    background:none;
+    border:none;
+    padding:0;
+    color:var(--ink-soft);
+    text-decoration:underline;
+    text-underline-offset:2px;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .link-btn:hover{color:var(--accent-2);}
+  .hub-image-form{
+    display:none;
+    gap:6px;
+    align-items:center;
+    margin-top:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .hub-image-form input[type="url"]{
+    padding:7px 10px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    color:var(--ink);
+    font-size:12px;
+    width:220px;
+    max-width:60vw;
+  }
+  .hub-image-form button{
+    padding:7px 12px;
+    font-size:12px;
+    border-radius:8px;
+  }
+  #hub-image-apply{background:var(--accent-2); color:#fff8ef;}
+  #hub-image-clear{background:transparent; color:var(--ink-soft); border:1px solid var(--border);}
+ 
+  #spin-result{
+    margin:18px 0 4px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:16px;
+    min-height:24px;
+  }
+  #spin-result .num{color:var(--accent); font-weight:600;}
+ 
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin:14px 0 8px;
+  }
+  button{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    border-radius:999px;
+    padding:12px 22px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .25s ease, opacity .2s ease;
+  }
+  button:hover{transform:translateY(-1px);}
+  button:active{transform:translateY(0);}
+  button:disabled{opacity:.5; cursor:not-allowed; transform:none;}
+ 
+  #spin-button{
+    background:var(--accent);
+    color:#fff8ef;
+    box-shadow:0 6px 18px -8px var(--glow);
+  }
+  #reset-button{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--border);
+  }
+  #bank-toggle{
+    background:transparent;
+    color:var(--accent-2);
+    border-color:var(--border);
+  }
+ 
+  /* Movie bank */
+  section.panel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px 22px;
+    margin:26px 0;
+    text-align:left;
+  }
+  section.panel h2{
+    font-family:'Cinzel', serif;
+    font-size:19px;
+    margin:0 0 4px;
+  }
+  .panel-sub{
+    color:var(--ink-soft);
+    font-size:13px;
+    margin:0 0 16px;
+  }
+  .add-row{
+    display:flex;
+    gap:8px;
+    margin-bottom:6px;
+    align-items:flex-start;
+  }
+  .add-input-wrap{
+    position:relative;
+    flex:1;
+  }
+  .add-row input[type="text"]{
+    width:100%;
+    padding:10px 14px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+  }
+  .add-row button{
+    background:var(--accent-2);
+    color:#fff8ef;
+    border-radius:10px;
+    padding:10px 18px;
+    white-space:nowrap;
+  }
+  .suggestions{
+    position:absolute;
+    top:calc(100% + 6px);
+    left:0;
+    right:0;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    box-shadow:0 12px 30px -12px rgba(0,0,0,.35);
+    max-height:220px;
+    overflow-y:auto;
+    z-index:5;
+    display:none;
+  }
+  .suggestions.open{display:block;}
+  .suggestion-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:8px 12px;
+    font-size:13px;
+    border-bottom:1px solid var(--border);
+  }
+  .suggestion-item:last-child{border-bottom:none;}
+  .suggestion-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .suggestion-tag.bank{background:rgba(107,50,184,.16); color:var(--accent-2);}
+  .suggestion-tag.history{background:rgba(90,80,101,.16); color:var(--ink-soft);}
+  .add-warning{
+    min-height:16px;
+    font-size:12px;
+    color:var(--danger);
+    margin:0 0 14px;
+  }
+  .movie-list-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 10px 6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .movie-list-header .badge{width:28px; flex-shrink:0;}
+  .movie-list-header .title{flex:1;}
+  .movie-list-header .added{min-width:64px; text-align:right;}
+  .movie-list-header .header-spacer{min-width:58px;}
+  #movie-list{
+    max-height:260px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-right:4px;
+  }
+  .movie-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px;
+    border-radius:10px;
+    background:var(--panel-2);
+  }
+  .movie-row .badge{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    width:28px;
+    flex-shrink:0;
+  }
+  .movie-row .title{
+    flex:1;
+    font-size:14px;
+  }
+  .movie-row .added{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    min-width:64px;
+    text-align:right;
+  }
+  .movie-row.drawn .title{
+    color:var(--ink-soft);
+    text-decoration:line-through;
+  }
+  .movie-row button{
+    background:transparent;
+    color:var(--danger);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:5px 10px;
+    font-size:12px;
+  }
+  .bank-count{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:12px;
+  }
+ 
+  /* Results table */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  th, td{
+    padding:12px 10px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+  }
+  th:nth-child(2), td:nth-child(2){
+    text-align:left;
+  }
+  th{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  .date-input{
+    background:var(--panel-2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:6px 8px;
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+  }
+  .empty-note{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    padding:18px;
+  }
+  .skull-badge{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:50px;
+    height:55px;
+  }
+  .skull-badge svg{width:100%; height:100%;}
+  .skull-badge .skull-shape{fill:#9a94a3; stroke:#3a3444; stroke-width:1.3;}
+  body.dark-mode .skull-badge .skull-shape{fill:#8d8698; stroke:#efe9f5;}
+  .skull-badge .skull-cut{fill:var(--panel);}
+  .skull-badge .skull-num{
+    position:absolute;
+    top:21%; left:46%;
+    transform:translate(-50%,-50%);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:9px;
+    color:var(--accent);
+    -webkit-text-stroke:2px var(--panel);
+    paint-order:stroke fill;
+    text-shadow:
+      -1px -1px 0 var(--panel), 1px -1px 0 var(--panel),
+      -1px 1px 0 var(--panel), 1px 1px 0 var(--panel);
+  }
+ 
+  @media (prefers-reduced-motion: reduce){
+    #wheel-canvas{transition-duration:.6s;}
+    .pointer{animation:none;}
+  }
+ 
+  /* ---- Subtle Halloween background ---- */
+  #bg-fx{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  #bg-fx svg{position:absolute;}
+  .bg-moon{
+    top:-2%;
+    right:-2%;
+    width:min(30vw,260px);
+    height:auto;
+    opacity:.5;
+  }
+  body.light-mode .bg-moon path{fill:var(--accent-2); opacity:.14;}
+  body.dark-mode .bg-moon path{fill:var(--accent); opacity:.20;}
+  .bg-web{
+    width:min(26vw,220px);
+    height:auto;
+    opacity:.16;
+    stroke:var(--ink-soft);
+    fill:none;
+    stroke-width:1;
+  }
+  .bg-web--tl{top:-6%;left:-6%;}
+  .bg-web--br{bottom:-8%;right:-8%; transform:rotate(180deg);}
+  .bg-bat{
+    position:absolute;
+    opacity:.14;
+    fill:var(--ink-soft);
+    animation:bat-drift 9s ease-in-out infinite;
+  }
+  .bg-bat--1{top:14%; left:8%; width:34px; animation-delay:0s;}
+  .bg-bat--2{top:28%; left:20%; width:22px; animation-delay:1.4s;}
+  .bg-bat--3{top:62%; right:10%; width:30px; animation-delay:.6s;}
+  .bg-bat--4{top:78%; left:14%; width:20px; animation-delay:2.1s;}
+  .bg-bat--5{top:8%; right:26%; width:18px; animation-delay:3s;}
+  @keyframes bat-drift{
+    0%,100%{transform:translate(0,0);}
+    50%{transform:translate(6px,-10px);}
+  }
+  .bg-deco{
+    position:absolute;
+    color:var(--ink-soft);
+  }
+  .bg-deco path, .bg-deco circle, .bg-deco ellipse, .bg-deco rect{
+    fill:currentColor;
+  }
+  /* body/eyes split so eyes can glow brighter and in different colors than
+     the silhouette they sit on */
+  .bg-deco-body{opacity:.16;}
+  circle.bg-deco-eyes, .bg-deco-eyes{
+    fill:var(--ink);
+    opacity:.65;
+  }
+  .eyes-red{fill:#ff3b3b !important; opacity:.7;}
+  .eyes-yellow{fill:#ffd23b !important; opacity:.7;}
+  .eyes-green{fill:#3fd67a !important; opacity:.7;}
+  .eyes-orange{fill:#ff9a2e !important; opacity:.7;}
+ 
+  .bg-pumpkin{opacity:.16; color:var(--accent);}
+  .bg-pumpkin--1{top:8%; left:32%; width:44px;}
+  .bg-pumpkin--2{bottom:6%; right:24%; width:36px;}
+  .bg-pumpkin--3{top:46%; left:2%; width:34px;}
+  .bg-pumpkin--4{bottom:12%; left:46%; width:30px;}
+ 
+  .bg-cat{color:var(--ink-soft);}
+  .bg-cat--1{bottom:4%; left:6%; width:56px;}
+  .bg-cat--2{top:60%; right:1%; width:42px; transform:scaleX(-1);}
+  .bg-cat--3{bottom:32%; right:16%; width:34px;}
+ 
+  .bg-witch{color:var(--accent-2);}
+  .bg-witch--1{top:8%; left:58%; width:78px; transform:rotate(-6deg);}
+  .bg-witch--2{bottom:22%; right:3%; width:64px; transform:rotate(10deg) scaleX(-1);}
+  .bg-witch--3{top:52%; left:10%; width:58px; transform:rotate(-14deg) scaleX(-1);}
+  .bg-witch--4{top:2%; left:6%; width:50px; transform:rotate(8deg);}
+  .bg-witch--5{bottom:44%; right:34%; width:46px; transform:rotate(-4deg) scaleX(-1);}
+ 
+  .bg-spider-rig{position:absolute; width:0; height:0;}
+  .spider-thread{
+    position:absolute;
+    left:0;
+    top:-46px;
+    width:1px;
+    height:60px;
+    background:var(--ink-soft);
+    opacity:.3;
+    transform:translateX(-50%);
+    z-index:0;
+  }
+  .bg-spider{
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+    display:block;
+    color:#0a0a0a;
+    animation:spider-bob 4.5s ease-in-out infinite;
+  }
+  body.dark-mode .bg-spider{color:#050505;}
+  @keyframes spider-bob{
+    0%,100%{transform:translate(-50%,0);}
+    50%{transform:translate(-50%,8px);}
+  }
+  @keyframes spider-bob-flip{
+    0%,100%{transform:translate(-50%,0) scaleX(-1);}
+    50%{transform:translate(-50%,8px) scaleX(-1);}
+  }
+  .bg-spider-rig--1{top:10%; left:5%;}
+  .bg-spider-rig--1 .bg-spider{width:34px;}
+  .bg-spider-rig--2{bottom:14%; right:6%;}
+  .bg-spider-rig--2 .bg-spider{width:30px; animation-name:spider-bob-flip;}
+  .bg-spider-rig--3{top:22%; right:32%;}
+  .bg-spider-rig--3 .bg-spider{width:24px; animation-delay:1.2s;}
+ 
+  .bg-skull{color:var(--ink-soft);}
+  .bg-skull--1{top:48%; right:4%; width:32px;}
+  .bg-skull--2{top:20%; left:44%; width:26px;}
+  .bg-skull--3{bottom:26%; left:36%; width:22px;}
+  .bg-skull--4{top:66%; left:24%; width:24px; transform:rotate(-8deg);}
+ 
+  .bg-sign{opacity:.16; color:var(--ink-soft);}
+  .bg-sign--1{top:36%; left:1%; width:60px; transform:rotate(-4deg);}
+ 
+  .bg-skeleton{color:var(--ink-soft);}
+  .bg-skeleton--1{top:32%; right:12%; width:32px;}
+  .bg-skeleton--2{bottom:8%; left:22%; width:26px; transform:rotate(6deg);}
+ 
+  .bg-tombstone{opacity:.15; color:var(--ink-soft);}
+  .bg-tombstone--1{bottom:0%; right:9%; width:34px;}
+  .bg-tombstone--2{bottom:0%; right:15.5%; width:26px;}
+  .bg-tombstone--3{bottom:0%; right:4%; width:22px;}
+  .bg-tombstone--4{bottom:0%; left:44%; width:30px;}
+  .bg-tombstone--5{bottom:0%; left:50%; width:22px;}
+  .bg-tombstone--6{bottom:0%; left:8%; width:26px;}
+ 
+  .bg-tree{opacity:.16; color:var(--ink-soft);}
+  .bg-tree--1{bottom:0%; right:26%; width:70px;}
+  .bg-tree--2{bottom:0%; left:16%; width:60px;}
+  .bg-tree--3{bottom:0%; left:64%; width:50px;}
+ 
+  .bg-raven{opacity:.18; color:var(--ink-soft);}
+  .bg-raven--1{top:5%; left:16%; width:40px;}
+  .bg-raven--2{top:18%; right:38%; width:30px; transform:scaleX(-1);}
+ 
+  .bg-ghost{
+    position:absolute;
+    color:var(--ink-soft);
+    animation:ghost-float 7s ease-in-out infinite;
+  }
+  .bg-ghost--1{top:16%; left:38%; width:34px; animation-delay:.4s;}
+  .bg-ghost--2{bottom:36%; right:14%; width:28px; animation-delay:2.6s;}
+  .bg-ghost--3{top:70%; left:48%; width:24px; animation-delay:1.3s;}
+  @keyframes ghost-float{
+    0%,100%{transform:translate(0,0);}
+    50%{transform:translate(5px,-16px);}
+  }
+ 
+  .bg-fence{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    width:100%;
+    height:auto;
+    opacity:.4;
+    color:var(--ink);
+  }
+  .bg-fence rect{
+    fill:currentColor;
+    stroke:currentColor;
+    stroke-width:0.75;
+    stroke-opacity:.5;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bg-bat, .bg-spider, .bg-ghost{animation:none;}
+  }
+  .wrap{position:relative; z-index:1;}
+ 
+  /* ---- Confirm modal ---- */
+  #confirm-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(12,10,19,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:10;
+    padding:20px;
+  }
+  #confirm-overlay.open{display:flex;}
+  #confirm-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px 24px;
+    max-width:340px;
+    width:100%;
+    text-align:left;
+    box-shadow:0 20px 50px -18px rgba(0,0,0,.5);
+  }
+  #confirm-box p{
+    margin:0 0 18px;
+    font-size:14px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  #confirm-actions{
+    display:flex;
+    gap:8px;
+    justify-content:flex-end;
+  }
+  #confirm-cancel{
+    background:transparent;
+    color:var(--ink-soft);
+    border-color:var(--border);
+    padding:9px 16px;
+    font-size:13px;
+  }
+  #confirm-ok{
+    background:var(--danger);
+    color:#fff8ef;
+    padding:9px 16px;
+    font-size:13px;
+  }
+</style>
 </head>
-<body>
-    <div class="container">
-        <h1>Roulette Movie Game (1-110)</h1>
-        <div id="roulette-table">
-            <div id="ball"></div>
-            <!-- Number positions around the roulette table -->
-        </div>
-        <div id="spin-result"></div>
-        <button id="spin-button">Spin the Wheel</button>
-        <button id="reset-button">Reset</button>
-        <button id="theme-toggle">Switch to Dark Mode</button>
-
-        <!-- Table for results -->
-        <h2>Results</h2>
-        <table id="results-table">
-            <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Movie Title</th>
-					<th>Day to Watch</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+<body class="light-mode">
+  <div id="bg-fx" aria-hidden="true">
+    <svg class="bg-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="bg-web bg-web--tl" viewBox="0 0 120 120">
+      <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
+      <path d="M8,4 Q30,20 24,44 Q46,40 56,58 Q40,70 44,92"/>
+      <path d="M20,10 Q50,34 42,66 Q70,60 80,84"/>
+    </svg>
+    <svg class="bg-web bg-web--br" viewBox="0 0 120 120">
+      <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
+      <path d="M8,4 Q30,20 24,44 Q46,40 56,58 Q40,70 44,92"/>
+      <path d="M20,10 Q50,34 42,66 Q70,60 80,84"/>
+    </svg>
+    <svg class="bg-bat bg-bat--1" viewBox="0 0 64 32"><path d="M32 12c-4-10-14-12-20-6 6-1 10 2 12 6-8-2-16 2-20 10 8-4 14-3 18 0-6 2-10 7-10 12 5-6 11-8 20-8s15 2 20 8c0-5-4-10-10-12 4-3 10-4 18 0-4-8-12-12-20-10 2-4 6-7 12-6-6-6-16-4-20 6z"/></svg>
+    <svg class="bg-bat bg-bat--2" viewBox="0 0 64 32"><path d="M32 12c-4-10-14-12-20-6 6-1 10 2 12 6-8-2-16 2-20 10 8-4 14-3 18 0-6 2-10 7-10 12 5-6 11-8 20-8s15 2 20 8c0-5-4-10-10-12 4-3 10-4 18 0-4-8-12-12-20-10 2-4 6-7 12-6-6-6-16-4-20 6z"/></svg>
+    <svg class="bg-bat bg-bat--3" viewBox="0 0 64 32"><path d="M32 12c-4-10-14-12-20-6 6-1 10 2 12 6-8-2-16 2-20 10 8-4 14-3 18 0-6 2-10 7-10 12 5-6 11-8 20-8s15 2 20 8c0-5-4-10-10-12 4-3 10-4 18 0-4-8-12-12-20-10 2-4 6-7 12-6-6-6-16-4-20 6z"/></svg>
+    <svg class="bg-bat bg-bat--4" viewBox="0 0 64 32"><path d="M32 12c-4-10-14-12-20-6 6-1 10 2 12 6-8-2-16 2-20 10 8-4 14-3 18 0-6 2-10 7-10 12 5-6 11-8 20-8s15 2 20 8c0-5-4-10-10-12 4-3 10-4 18 0-4-8-12-12-20-10 2-4 6-7 12-6-6-6-16-4-20 6z"/></svg>
+    <svg class="bg-bat bg-bat--5" viewBox="0 0 64 32"><path d="M32 12c-4-10-14-12-20-6 6-1 10 2 12 6-8-2-16 2-20 10 8-4 14-3 18 0-6 2-10 7-10 12 5-6 11-8 20-8s15 2 20 8c0-5-4-10-10-12 4-3 10-4 18 0-4-8-12-12-20-10 2-4 6-7 12-6-6-6-16-4-20 6z"/></svg>
+ 
+    <svg class="bg-web bg-web--tr" viewBox="0 0 120 120" style="top:-6%; right:-6%; transform:rotate(90deg);">
+      <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
+      <path d="M8,4 Q30,20 24,44 Q46,40 56,58 Q40,70 44,92"/>
+      <path d="M20,10 Q50,34 42,66 Q70,60 80,84"/>
+    </svg>
+    <svg class="bg-web bg-web--bl" viewBox="0 0 120 120" style="bottom:-6%; left:-6%; transform:rotate(-90deg);">
+      <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
+      <path d="M8,4 Q30,20 24,44 Q46,40 56,58 Q40,70 44,92"/>
+      <path d="M20,10 Q50,34 42,66 Q70,60 80,84"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-pumpkin bg-pumpkin--1" viewBox="0 0 60 50">
+      <path d="M28 8c-2-4-1-7 2-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M6 29c0-14 10-21 24-21s24 7 24 21-10 19-24 19S6 43 6 29z"/>
+      <path d="M18 11c-2 6-2 28 0 35M30 9c-1 7-1 28 0 36M42 11c2 6 2 28 0 35" stroke="var(--bg)" stroke-width="2" fill="none" opacity=".55"/>
+      <path d="M15 24 L20 30 L25 24 Z" fill="var(--bg)"/>
+      <path d="M35 24 L40 30 L45 24 Z" fill="var(--bg)"/>
+      <path d="M17 36 Q30 42 43 36 L40 34 Q30 38 20 34 Z" fill="var(--bg)"/>
+    </svg>
+    <svg class="bg-deco bg-pumpkin bg-pumpkin--2" viewBox="0 0 60 50">
+      <path d="M28 8c-2-4-1-7 2-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M6 29c0-14 10-21 24-21s24 7 24 21-10 19-24 19S6 43 6 29z"/>
+      <path d="M18 11c-2 6-2 28 0 35M30 9c-1 7-1 28 0 36M42 11c2 6 2 28 0 35" stroke="var(--bg)" stroke-width="2" fill="none" opacity=".55"/>
+      <path d="M15 24 L20 30 L25 24 Z" fill="var(--bg)"/>
+      <path d="M35 24 L40 30 L45 24 Z" fill="var(--bg)"/>
+      <path d="M17 36 Q30 42 43 36 L40 34 Q30 38 20 34 Z" fill="var(--bg)"/>
+    </svg>
+    <svg class="bg-deco bg-pumpkin bg-pumpkin--3" viewBox="0 0 60 50">
+      <path d="M28 8c-2-4-1-7 2-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M6 29c0-14 10-21 24-21s24 7 24 21-10 19-24 19S6 43 6 29z"/>
+      <path d="M18 11c-2 6-2 28 0 35M30 9c-1 7-1 28 0 36M42 11c2 6 2 28 0 35" stroke="var(--bg)" stroke-width="2" fill="none" opacity=".55"/>
+      <path d="M15 24 L20 30 L25 24 Z" fill="var(--bg)"/>
+      <path d="M35 24 L40 30 L45 24 Z" fill="var(--bg)"/>
+      <path d="M17 36 Q30 42 43 36 L40 34 Q30 38 20 34 Z" fill="var(--bg)"/>
+    </svg>
+    <svg class="bg-deco bg-pumpkin bg-pumpkin--4" viewBox="0 0 60 50">
+      <path d="M28 8c-2-4-1-7 2-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M6 29c0-14 10-21 24-21s24 7 24 21-10 19-24 19S6 43 6 29z"/>
+      <path d="M18 11c-2 6-2 28 0 35M30 9c-1 7-1 28 0 36M42 11c2 6 2 28 0 35" stroke="var(--bg)" stroke-width="2" fill="none" opacity=".55"/>
+      <path d="M15 24 L20 30 L25 24 Z" fill="var(--bg)"/>
+      <path d="M35 24 L40 30 L45 24 Z" fill="var(--bg)"/>
+      <path d="M17 36 Q30 42 43 36 L40 34 Q30 38 20 34 Z" fill="var(--bg)"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-cat bg-cat--1" viewBox="0 0 50 50">
+      <ellipse class="bg-deco-body" cx="25" cy="34" rx="14" ry="12"/>
+      <circle class="bg-deco-body" cx="25" cy="16" r="9"/>
+      <path class="bg-deco-body" d="M17 10 L20 1 L23 11 Z"/>
+      <path class="bg-deco-body" d="M33 10 L30 1 L27 11 Z"/>
+      <path class="bg-deco-body" d="M38 30 Q48 34 44 46 Q42 52 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <circle class="bg-deco-eyes eyes-orange" cx="21" cy="15" r="1.6"/>
+      <circle class="bg-deco-eyes eyes-orange" cx="29" cy="15" r="1.6"/>
+    </svg>
+    <svg class="bg-deco bg-cat bg-cat--2" viewBox="0 0 50 50">
+      <ellipse class="bg-deco-body" cx="25" cy="34" rx="14" ry="12"/>
+      <circle class="bg-deco-body" cx="25" cy="16" r="9"/>
+      <path class="bg-deco-body" d="M17 10 L20 1 L23 11 Z"/>
+      <path class="bg-deco-body" d="M33 10 L30 1 L27 11 Z"/>
+      <path class="bg-deco-body" d="M38 30 Q48 34 44 46 Q42 52 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <circle class="bg-deco-eyes eyes-orange" cx="21" cy="15" r="1.6"/>
+      <circle class="bg-deco-eyes eyes-orange" cx="29" cy="15" r="1.6"/>
+    </svg>
+    <svg class="bg-deco bg-cat bg-cat--3" viewBox="0 0 50 50">
+      <ellipse class="bg-deco-body" cx="25" cy="34" rx="14" ry="12"/>
+      <circle class="bg-deco-body" cx="25" cy="16" r="9"/>
+      <path class="bg-deco-body" d="M17 10 L20 1 L23 11 Z"/>
+      <path class="bg-deco-body" d="M33 10 L30 1 L27 11 Z"/>
+      <path class="bg-deco-body" d="M38 30 Q48 34 44 46 Q42 52 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <circle class="bg-deco-eyes eyes-orange" cx="21" cy="15" r="1.6"/>
+      <circle class="bg-deco-eyes eyes-orange" cx="29" cy="15" r="1.6"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-witch bg-witch--1" viewBox="0 0 100 100">
+      <path class="bg-deco-body" d="M33 82 L89 52" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M33 82 L16 74 L20 79 L12 78 L17 83 L10 84 L16 88 L13 91 L20 88 L23 93 L27 87 L31 89 L33 84 Z"/>
+      <path class="bg-deco-body" d="M59 50 Q48 55 47 65 Q46 75 63 75 Q80 75 79 65 Q78 55 71 50 Z"/>
+      <circle class="bg-deco-body" cx="65" cy="44" r="7"/>
+      <ellipse class="bg-deco-body" cx="65" cy="37" rx="12" ry="2.8"/>
+      <path class="bg-deco-body" d="M56 37 L65 6 L74 37 Z"/>
+      <path class="bg-deco-body" d="M58 54 Q43 58 33 54" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle class="bg-deco-eyes eyes-green" cx="68" cy="44" r="1.5"/>
+    </svg>
+    <svg class="bg-deco bg-witch bg-witch--2" viewBox="0 0 100 100">
+      <path class="bg-deco-body" d="M33 82 L89 52" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M33 82 L16 74 L20 79 L12 78 L17 83 L10 84 L16 88 L13 91 L20 88 L23 93 L27 87 L31 89 L33 84 Z"/>
+      <path class="bg-deco-body" d="M59 50 Q48 55 47 65 Q46 75 63 75 Q80 75 79 65 Q78 55 71 50 Z"/>
+      <circle class="bg-deco-body" cx="65" cy="44" r="7"/>
+      <ellipse class="bg-deco-body" cx="65" cy="37" rx="12" ry="2.8"/>
+      <path class="bg-deco-body" d="M56 37 L65 6 L74 37 Z"/>
+      <path class="bg-deco-body" d="M58 54 Q43 58 33 54" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle class="bg-deco-eyes eyes-green" cx="68" cy="44" r="1.5"/>
+    </svg>
+    <svg class="bg-deco bg-witch bg-witch--3" viewBox="0 0 100 100">
+      <path class="bg-deco-body" d="M33 82 L89 52" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M33 82 L16 74 L20 79 L12 78 L17 83 L10 84 L16 88 L13 91 L20 88 L23 93 L27 87 L31 89 L33 84 Z"/>
+      <path class="bg-deco-body" d="M59 50 Q48 55 47 65 Q46 75 63 75 Q80 75 79 65 Q78 55 71 50 Z"/>
+      <circle class="bg-deco-body" cx="65" cy="44" r="7"/>
+      <ellipse class="bg-deco-body" cx="65" cy="37" rx="12" ry="2.8"/>
+      <path class="bg-deco-body" d="M56 37 L65 6 L74 37 Z"/>
+      <path class="bg-deco-body" d="M58 54 Q43 58 33 54" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle class="bg-deco-eyes eyes-green" cx="68" cy="44" r="1.5"/>
+    </svg>
+    <svg class="bg-deco bg-witch bg-witch--4" viewBox="0 0 100 100">
+      <path class="bg-deco-body" d="M33 82 L89 52" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M33 82 L16 74 L20 79 L12 78 L17 83 L10 84 L16 88 L13 91 L20 88 L23 93 L27 87 L31 89 L33 84 Z"/>
+      <path class="bg-deco-body" d="M59 50 Q48 55 47 65 Q46 75 63 75 Q80 75 79 65 Q78 55 71 50 Z"/>
+      <circle class="bg-deco-body" cx="65" cy="44" r="7"/>
+      <ellipse class="bg-deco-body" cx="65" cy="37" rx="12" ry="2.8"/>
+      <path class="bg-deco-body" d="M56 37 L65 6 L74 37 Z"/>
+      <path class="bg-deco-body" d="M58 54 Q43 58 33 54" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle class="bg-deco-eyes eyes-green" cx="68" cy="44" r="1.5"/>
+    </svg>
+    <svg class="bg-deco bg-witch bg-witch--5" viewBox="0 0 100 100">
+      <path class="bg-deco-body" d="M33 82 L89 52" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M33 82 L16 74 L20 79 L12 78 L17 83 L10 84 L16 88 L13 91 L20 88 L23 93 L27 87 L31 89 L33 84 Z"/>
+      <path class="bg-deco-body" d="M59 50 Q48 55 47 65 Q46 75 63 75 Q80 75 79 65 Q78 55 71 50 Z"/>
+      <circle class="bg-deco-body" cx="65" cy="44" r="7"/>
+      <ellipse class="bg-deco-body" cx="65" cy="37" rx="12" ry="2.8"/>
+      <path class="bg-deco-body" d="M56 37 L65 6 L74 37 Z"/>
+      <path class="bg-deco-body" d="M58 54 Q43 58 33 54" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle class="bg-deco-eyes eyes-green" cx="68" cy="44" r="1.5"/>
+    </svg>
+ 
+    <div class="bg-spider-rig bg-spider-rig--1">
+      <div class="spider-thread"></div>
+      <svg class="bg-spider" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="24" rx="7" ry="9"/>
+        <circle cx="20" cy="12" r="5"/>
+        <path d="M14 14 Q4 10 2 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 18 Q2 18 0 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 24 Q2 26 1 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 29 Q6 34 4 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M26 14 Q36 10 38 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 18 Q38 18 40 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 24 Q38 26 39 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M25 29 Q34 34 36 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle class="bg-deco-eyes eyes-red" cx="17.5" cy="11" r="1.2"/>
+        <circle class="bg-deco-eyes eyes-red" cx="22.5" cy="11" r="1.2"/>
+      </svg>
     </div>
-
-    <script>
-        // List of 110 movie titles
-        const movieTitles = [
-            "Halloweentown", "Halloweentown 2: Kalabar's Revenge", "Halloweentown High", "Return to Halloweentown", 
-            "Twitches", "Twitches Too", "Scream Team", "Don't Look Under the Bed", "Haunted Mansion", "Hocus Pocus",
-            "Mom's Got a Date With a Vampire", "The Nightmare Before Christmas", "Phantom of the Megaplex", 
-            "Scary Godmother: Halloween Spooktacular", "Scary Godmother 2: The Revenge of Jimmy", "The Conjuring", 
-            "The Conjuring 2", "The Conjuring: The Devil Made me Do It", "The Nun", "Annabelle", 
-            "Annabelle: Comes Home", "Annabelle: Creation", "The Curse Of Llorona", "IT", "IT: Chapter 2", 
-            "Insidious", "Insidious 2", "Insidious Chapter 3", "Insidious: Last Key", "The Ring", 
-            "The Ring 2", "The Grudge", "Hereditary", "Drag Me to Hell", "Apostle", "The Witch", 
-            "Sinister", "Replace", "Replace", "Replace", "The Exorcism of Emily Rose", 
-            "The Ritual", "As Above so Below", "Get Out", "Halloween (2018)", "Halloween Kills", 
-            "Halloween Ends", "A Nightmare on Elm Street (2010)", "Freddy vs Jason", "Jason X", "Jason Goes to Hell", 
-            "Friday the 13th (2009)", "Candyman", "Orphan", "Orphan: First Kill", "The Craft", 
-            "Scream", "Scream 2", "Scream 3", "Scream 4", "Scream (2022)", 
-            "Midsommar", "The Invisible Man", "Pet Semetary", "Don't Breathe", "Don't Breathe 2", 
-            "The Shining", "Doctor Sleep", "Escape Room", "A Quiet Place", "A Quiet Place 2", 
-            "Stay Alive", "The Pope's Exorcist", "The Menu", "Parasite", "You're Next", 
-            "Malignant", "Fear Street Part 1: 1994", "Fear Street Part 2: 1978", "Fear Street Part 3: 1666", "The Old Ways", 
-            "Missing", "No One Gets Out Alive", "Hellhole", "Umma", "Dawn of the Dead", 
-            "Shaun of the Dead", "Cocaine Bear", "Smile", "M3GAN", "Train to Busan", 
-            "Paranormal Activity", "Paranormal Activity 2", "Evil Dead Rises", "#Alive", "The Wailing", 
-            "I Saw the Devil", "Thirst", "A Tale of Two Sisters", "Ghostbusters", "The Witches (1990)", 
-            "Sleepy Hollow", "Monster House", "Ghostbusters 2", "Zombieland", "Zombieland: Double Tap", 
-            "28 Days Later", "28 Weeks Later", "Practical Magic", "The Little Vampire"
-        ];
-
-        const numbers = Array.from({ length: 110 }, (_, i) => i + 1);
-        let currentNumbers = loadProgress('currentNumbers') || [...numbers].sort(() => Math.random() - 0.5);
-        let savedResults = loadProgress('savedResults') || [];
-        const themePreference = loadProgress('theme') || 'light';
-
-        const rouletteTable = document.getElementById('roulette-table');
-        const ball = document.getElementById('ball');
-        const resultDisplay = document.getElementById('spin-result');
-        const spinButton = document.getElementById('spin-button');
-        const resetButton = document.getElementById('reset-button');
-        const themeToggle = document.getElementById('theme-toggle');
-        const resultsTableBody = document.querySelector('#results-table tbody');
-
-        // Create the circular table with numbers placed around it
-        function createTable() {
-            rouletteTable.innerHTML = '';  // Clear previous table
-            rouletteTable.appendChild(ball); // Append ball to the table
-
-            currentNumbers.forEach((num, index) => {
-                const numDiv = document.createElement('div');
-                numDiv.textContent = num;
-                numDiv.classList.add('number');
-                // Positioning numbers around a circle
-                const angle = (360 / currentNumbers.length) * index;
-                numDiv.style.transform = `rotate(${angle}deg) translate(130px)`;
-                rouletteTable.appendChild(numDiv);
-            });
-        }
-
-        // Load saved results to results table
-        function loadResults() {
-            resultsTableBody.innerHTML = '';
-            savedResults.forEach(({ number, movieTitle }) => {
-                addResultToTable(number, movieTitle);
-            });
-        }
-
-        // Spin the wheel
-        function spinWheel() {
-            if (currentNumbers.length === 0) {
-                resultDisplay.textContent = 'All numbers have been removed!';
-                return;
-            }
-
-            // Disable the button while spinning
-            spinButton.disabled = true;
-
-            // Add spinning animation to table and ball
-            rouletteTable.classList.add('spin-table');
-            ball.classList.add('roll-ball');
-
-            // Randomly pick a number after a delay
-            setTimeout(() => {
-                const randomIndex = Math.floor(Math.random() * currentNumbers.length);
-                const selectedNumber = currentNumbers[randomIndex];
-
-                // Get the corresponding movie title
-                const movieTitle = movieTitles[selectedNumber - 1];  // Subtract 1 because the array is zero-indexed
-
-                // Show the result
-                resultDisplay.textContent = `The ball landed on: ${selectedNumber} - ${movieTitle}`;
-
-                // Add the result to the table and save progress
-                addResultToTable(selectedNumber, movieTitle);
-                savedResults.push({ number: selectedNumber, movieTitle });
-                saveProgress('savedResults', savedResults);
-
-                // Remove the number from the list
-                currentNumbers.splice(randomIndex, 1);
-                saveProgress('currentNumbers', currentNumbers);
-
-                // Re-enable the button
-                spinButton.disabled = false;
-
-                createTable();  // Update table after removing number
-                rouletteTable.classList.remove('spin-table');
-                ball.classList.remove('roll-ball');
-            }, 3000);  // Matches the duration of the animation
-        }
-
-        // Add result to the results table
-        function addResultToTable(number, movieTitle) {
-            const row = document.createElement('tr');
-            const numberCell = document.createElement('td');
-            const titleCell = document.createElement('td');
-
-            numberCell.textContent = number;
-            titleCell.textContent = movieTitle;
-
-            row.appendChild(numberCell);
-            row.appendChild(titleCell);
-
-            resultsTableBody.appendChild(row);
-        }
-
-        // Save progress to localStorage
-        function saveProgress(key, data) {
-            localStorage.setItem(key, JSON.stringify(data));
-        }
-
-        // Load progress from localStorage
-        function loadProgress(key) {
-            const data = localStorage.getItem(key);
-            return data ? JSON.parse(data) : null;
-        }
-
-        // Reset the game
-        function resetGame() {
-            currentNumbers = [...numbers].sort(() => Math.random() - 0.5);
-            savedResults = [];
-            saveProgress('currentNumbers', currentNumbers);
-            saveProgress('savedResults', savedResults);
-            resultDisplay.textContent = '';
-            createTable();
-            loadResults();
-        }
-
-        // Toggle light/dark theme
-        function toggleTheme() {
-            if (document.body.classList.contains('light-mode')) {
-                document.body.classList.remove('light-mode');
-                document.body.classList.add('dark-mode');
-                themeToggle.textContent = 'Switch to the Lame Light Mode';
-                saveProgress('theme', 'dark');
-            } else {
-                document.body.classList.remove('dark-mode');
-                document.body.classList.add('light-mode');
-                themeToggle.textContent = 'Switch to Dark Mode';
-                saveProgress('theme', 'light');
-            }
-        }
-
-        // Apply saved theme
-        function applyTheme() {
-            if (themePreference === 'dark') {
-                document.body.classList.add('dark-mode');
-                themeToggle.textContent = 'Switch to the lame Light Mode';
-            } else {
-                document.body.classList.add('light-mode');
-                themeToggle.textContent = 'Switch to Dark Mode';
-            }
-        }
-
-        // Initialize game
-        spinButton.addEventListener('click', spinWheel);
-        resetButton.addEventListener('click', resetGame);
-        themeToggle.addEventListener('click', toggleTheme);
-
-        applyTheme();
-        createTable();
-        loadResults();
-    </script>
+    <div class="bg-spider-rig bg-spider-rig--2">
+      <div class="spider-thread"></div>
+      <svg class="bg-spider" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="24" rx="7" ry="9"/>
+        <circle cx="20" cy="12" r="5"/>
+        <path d="M14 14 Q4 10 2 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 18 Q2 18 0 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 24 Q2 26 1 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 29 Q6 34 4 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M26 14 Q36 10 38 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 18 Q38 18 40 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 24 Q38 26 39 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M25 29 Q34 34 36 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle class="bg-deco-eyes eyes-red" cx="17.5" cy="11" r="1.2"/>
+        <circle class="bg-deco-eyes eyes-red" cx="22.5" cy="11" r="1.2"/>
+      </svg>
+    </div>
+    <div class="bg-spider-rig bg-spider-rig--3">
+      <div class="spider-thread"></div>
+      <svg class="bg-spider" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="24" rx="7" ry="9"/>
+        <circle cx="20" cy="12" r="5"/>
+        <path d="M14 14 Q4 10 2 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 18 Q2 18 0 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 24 Q2 26 1 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 29 Q6 34 4 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M26 14 Q36 10 38 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 18 Q38 18 40 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 24 Q38 26 39 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M25 29 Q34 34 36 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle class="bg-deco-eyes eyes-red" cx="17.5" cy="11" r="1.2"/>
+        <circle class="bg-deco-eyes eyes-red" cx="22.5" cy="11" r="1.2"/>
+      </svg>
+    </div>
+ 
+    <svg class="bg-deco bg-skull bg-skull--1" viewBox="0 0 40 44">
+      <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
+      <circle class="bg-deco-eyes" cx="13.5" cy="18" r="2.4"/>
+      <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
+    </svg>
+    <svg class="bg-deco bg-skull bg-skull--2" viewBox="0 0 40 44">
+      <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
+      <circle class="bg-deco-eyes" cx="13.5" cy="18" r="2.4"/>
+      <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
+    </svg>
+    <svg class="bg-deco bg-skull bg-skull--3" viewBox="0 0 40 44">
+      <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
+      <circle class="bg-deco-eyes" cx="13.5" cy="18" r="2.4"/>
+      <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
+    </svg>
+    <svg class="bg-deco bg-skull bg-skull--4" viewBox="0 0 40 44">
+      <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
+      <circle class="bg-deco-eyes" cx="13.5" cy="18" r="2.4"/>
+      <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-skeleton bg-skeleton--1" viewBox="0 0 40 90">
+      <circle class="bg-deco-body" cx="20" cy="10" r="8"/>
+      <circle class="bg-deco-eyes eyes-yellow" cx="17" cy="9" r="1.6"/>
+      <circle class="bg-deco-eyes eyes-yellow" cx="23" cy="9" r="1.6"/>
+      <path class="bg-deco-body" d="M20 18 L20 50" stroke="currentColor" stroke-width="2" fill="none"/>
+      <path class="bg-deco-body" d="M10 26 L30 26 M9 33 L31 33 M10 40 L30 40" stroke="currentColor" stroke-width="2" fill="none"/>
+      <path class="bg-deco-body" d="M12 50 L28 50 L24 58 L16 58 Z"/>
+      <path class="bg-deco-body" d="M20 20 L6 40 M20 20 L34 40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M16 58 L10 90 M24 58 L30 90" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    </svg>
+    <svg class="bg-deco bg-skeleton bg-skeleton--2" viewBox="0 0 40 90">
+      <circle class="bg-deco-body" cx="20" cy="10" r="8"/>
+      <circle class="bg-deco-eyes eyes-yellow" cx="17" cy="9" r="1.6"/>
+      <circle class="bg-deco-eyes eyes-yellow" cx="23" cy="9" r="1.6"/>
+      <path class="bg-deco-body" d="M20 18 L20 50" stroke="currentColor" stroke-width="2" fill="none"/>
+      <path class="bg-deco-body" d="M10 26 L30 26 M9 33 L31 33 M10 40 L30 40" stroke="currentColor" stroke-width="2" fill="none"/>
+      <path class="bg-deco-body" d="M12 50 L28 50 L24 58 L16 58 Z"/>
+      <path class="bg-deco-body" d="M20 20 L6 40 M20 20 L34 40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M16 58 L10 90 M24 58 L30 90" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-raven bg-raven--1" viewBox="0 0 50 30">
+      <path d="M25 15 Q10 6 2 14 Q14 14 20 18 Q10 22 4 26 Q18 26 25 20 Q34 26 46 24 Q38 20 30 18 Q40 12 48 12 Q36 8 25 15 Z"/>
+    </svg>
+    <svg class="bg-deco bg-raven bg-raven--2" viewBox="0 0 50 30">
+      <path d="M25 15 Q10 6 2 14 Q14 14 20 18 Q10 22 4 26 Q18 26 25 20 Q34 26 46 24 Q38 20 30 18 Q40 12 48 12 Q36 8 25 15 Z"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-tree bg-tree--1" viewBox="0 0 60 90">
+      <path class="bg-deco-body" d="M28 90 L30 58 Q19 53 13 38 M30 58 Q41 52 47 36 M30 58 L30 38 Q22 27 15 12 M30 38 Q39 26 46 8 M30 24 Q25 16 19 6 M15 38 Q9 32 3 28 M47 36 Q54 32 60 36 M13 38 Q6 40 1 46 M47 36 Q55 40 59 47" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    <svg class="bg-deco bg-tree bg-tree--2" viewBox="0 0 60 90">
+      <path class="bg-deco-body" d="M28 90 L30 58 Q19 53 13 38 M30 58 Q41 52 47 36 M30 58 L30 38 Q22 27 15 12 M30 38 Q39 26 46 8 M30 24 Q25 16 19 6 M15 38 Q9 32 3 28 M47 36 Q54 32 60 36 M13 38 Q6 40 1 46 M47 36 Q55 40 59 47" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    <svg class="bg-deco bg-tree bg-tree--3" viewBox="0 0 60 90">
+      <path class="bg-deco-body" d="M28 90 L30 58 Q19 53 13 38 M30 58 Q41 52 47 36 M30 58 L30 38 Q22 27 15 12 M30 38 Q39 26 46 8 M30 24 Q25 16 19 6 M15 38 Q9 32 3 28 M47 36 Q54 32 60 36 M13 38 Q6 40 1 46 M47 36 Q55 40 59 47" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-tombstone bg-tombstone--1" viewBox="0 0 40 50">
+      <path d="M4 50 L4 20 Q4 6 20 6 Q36 6 36 20 L36 50 Z"/>
+      <path d="M20 14 L20 26 M14 20 L26 20" stroke="var(--bg)" stroke-width="2" opacity=".5"/>
+    </svg>
+    <svg class="bg-deco bg-tombstone bg-tombstone--2" viewBox="0 0 40 50">
+      <path d="M4 50 L4 20 Q4 6 20 6 Q36 6 36 20 L36 50 Z"/>
+      <path d="M20 14 L20 26 M14 20 L26 20" stroke="var(--bg)" stroke-width="2" opacity=".5"/>
+    </svg>
+    <svg class="bg-deco bg-tombstone bg-tombstone--3" viewBox="0 0 34 44">
+      <path d="M4 44 L4 18 Q4 4 17 4 Q30 4 30 18 L30 44 Z"/>
+    </svg>
+    <svg class="bg-deco bg-tombstone bg-tombstone--4" viewBox="0 0 40 50">
+      <path d="M4 50 L4 20 Q4 6 20 6 Q36 6 36 20 L36 50 Z"/>
+      <path d="M20 14 L20 26 M14 20 L26 20" stroke="var(--bg)" stroke-width="2" opacity=".5"/>
+    </svg>
+    <svg class="bg-deco bg-tombstone bg-tombstone--5" viewBox="0 0 34 44">
+      <path d="M4 44 L4 18 Q4 4 17 4 Q30 4 30 18 L30 44 Z"/>
+    </svg>
+    <svg class="bg-deco bg-tombstone bg-tombstone--6" viewBox="0 0 40 50">
+      <path d="M4 50 L4 20 Q4 6 20 6 Q36 6 36 20 L36 50 Z"/>
+      <path d="M20 14 L20 26 M14 20 L26 20" stroke="var(--bg)" stroke-width="2" opacity=".5"/>
+    </svg>
+ 
+    <svg class="bg-ghost bg-ghost--1" viewBox="0 0 40 46">
+      <path d="M20 2c9 0 15 7 15 16v20l-4-5-4 5-4-5-4 5-4-5-4 5V18C5 9 11 2 20 2z"/>
+      <circle class="bg-deco-eyes" cx="15" cy="18" r="1.8"/>
+      <circle class="bg-deco-eyes" cx="25" cy="18" r="1.8"/>
+    </svg>
+    <svg class="bg-ghost bg-ghost--2" viewBox="0 0 40 46">
+      <path d="M20 2c9 0 15 7 15 16v20l-4-5-4 5-4-5-4 5-4-5-4 5V18C5 9 11 2 20 2z"/>
+      <circle class="bg-deco-eyes" cx="15" cy="18" r="1.8"/>
+      <circle class="bg-deco-eyes" cx="25" cy="18" r="1.8"/>
+    </svg>
+    <svg class="bg-ghost bg-ghost--3" viewBox="0 0 40 46">
+      <path d="M20 2c9 0 15 7 15 16v20l-4-5-4 5-4-5-4 5-4-5-4 5V18C5 9 11 2 20 2z"/>
+      <circle class="bg-deco-eyes" cx="15" cy="18" r="1.8"/>
+      <circle class="bg-deco-eyes" cx="25" cy="18" r="1.8"/>
+    </svg>
+ 
+    <svg class="bg-deco bg-sign bg-sign--1" viewBox="0 0 60 70">
+      <rect x="14" y="20" width="6" height="46"/>
+      <rect x="34" y="20" width="6" height="46"/>
+      <rect x="6" y="16" width="42" height="22" rx="1" transform="rotate(-3 27 27)"/>
+      <text x="27" y="24" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="700" fill="var(--bg)" transform="rotate(-3 27 27)">KEEP</text>
+      <text x="27" y="34" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="700" fill="var(--bg)" transform="rotate(-3 27 34)">OUT</text>
+    </svg>
+ 
+    <svg class="bg-fence" viewBox="0 0 800 60" preserveAspectRatio="none">
+      <rect x="0" y="24" width="800" height="4"/>
+      <rect x="10" y="12" width="14" height="48"/>
+      <rect x="65" y="12" width="14" height="48"/>
+      <rect x="120" y="12" width="14" height="48"/>
+      <rect x="175" y="12" width="14" height="48"/>
+      <rect x="230" y="30" width="14" height="30"/>
+      <rect x="285" y="12" width="14" height="48"/>
+      <rect x="340" y="12" width="14" height="48"/>
+      <rect x="395" y="12" width="14" height="48" transform="rotate(-12 402 36)"/>
+      <rect x="450" y="12" width="14" height="48"/>
+      <rect x="505" y="12" width="14" height="48"/>
+      <rect x="560" y="40" width="14" height="20"/>
+      <rect x="615" y="12" width="14" height="48"/>
+      <rect x="670" y="12" width="14" height="48" transform="rotate(8 677 36)"/>
+      <rect x="725" y="12" width="14" height="48"/>
+      <rect x="780" y="12" width="14" height="48"/>
+    </svg>
+  </div>
+ 
+  <div id="confirm-overlay">
+    <div id="confirm-box">
+      <p id="confirm-message">Are you sure?</p>
+      <div id="confirm-actions">
+        <button id="confirm-cancel">Cancel</button>
+        <button id="confirm-ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="wrap">
+    <div class="topbar">
+      <button id="home-button" class="icon-btn" title="Home" aria-label="Home">&#8962;</button>
+      <button id="theme-toggle" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">&#9788;</button>
+    </div>
+ 
+    <header class="hero">
+      <p class="eyebrow">Movie Roulette</p>
+      <h1>Night Reel</h1>
+      <p class="tagline">One spin, one film. Let the wheel choose tonight's watch.</p>
+    </header>
+ 
+    <div class="wheel-stage">
+      <div class="wheel-frame">
+        <div class="pointer"></div>
+        <div class="wheel-ring">
+          <canvas id="wheel-canvas" width="560" height="560"></canvas>
+        </div>
+        <div class="hub">
+          <div class="hub-image" id="hub-image"></div>
+          <svg viewBox="0 0 100 100">
+            <circle class="hub-inner-circle" cx="50" cy="50" r="22"/>
+            <path class="hub-pentagram" d="M50,34 L59.41,62.94 L34.78,45.06 L65.22,45.06 L40.59,62.94 Z"/>
+          </svg>
+        </div>
+      </div>
+ 
+      <div id="spin-result">Press spin to draw tonight's film.</div>
+ 
+      <div class="controls">
+        <button id="spin-button">Spin the wheel</button>
+        <button id="reset-button">Reset</button>
+        <button id="bank-toggle">Show movie bank</button>
+      </div>
+ 
+      <div class="hub-image-control">
+        <button id="hub-image-toggle" class="link-btn">Set center image</button>
+        <div class="hub-image-form" id="hub-image-form">
+          <input type="url" id="hub-image-input" placeholder="Paste an image link…">
+          <button id="hub-image-apply">Apply</button>
+          <button id="hub-image-clear">Clear</button>
+        </div>
+      </div>
+    </div>
+ 
+    <section class="panel" id="bank-panel" style="display:none;">
+      <h2>Movie bank</h2>
+      <p class="panel-sub">Add new titles or remove ones you're done with. Removing a title takes it out of the wheel; past results stay in your history.</p>
+      <div class="add-row">
+        <div class="add-input-wrap">
+          <input type="text" id="new-movie-input" placeholder="Add a movie title…" maxlength="120" autocomplete="off">
+          <div id="movie-suggestions" class="suggestions"></div>
+        </div>
+        <button id="add-movie-button">Add</button>
+      </div>
+      <p id="add-warning" class="add-warning"></p>
+      <div class="movie-list-header">
+        <span class="badge">No.</span>
+        <span class="title">Title</span>
+        <span class="added">Date added</span>
+        <span class="header-spacer"></span>
+      </div>
+      <div id="movie-list"></div>
+      <p class="bank-count" id="bank-count"></p>
+    </section>
+ 
+    <h2 style="font-family:'Cinzel',serif; margin-top:36px;">Watch history</h2>
+    <table id="results-table">
+      <thead>
+        <tr><th>No.</th><th>Title</th><th>Date watched</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+ 
+<script>
+(function(){
+  "use strict";
+ 
+  const defaultTitles = [
+    "Halloweentown","Halloweentown 2: Kalabar's Revenge","Halloweentown High","Return to Halloweentown",
+    "Twitches","Twitches Too","Scream Team","Don't Look Under the Bed","Haunted Mansion","Hocus Pocus",
+    "Mom's Got a Date With a Vampire","The Nightmare Before Christmas","Phantom of the Megaplex",
+    "Scary Godmother: Halloween Spooktacular","Scary Godmother 2: The Revenge of Jimmy","The Conjuring",
+    "The Conjuring 2","The Conjuring: The Devil Made me Do It","The Nun","Annabelle",
+    "Annabelle: Comes Home","Annabelle: Creation","The Curse Of Llorona","IT","IT: Chapter 2",
+    "Insidious","Insidious 2","Insidious Chapter 3","Insidious: Last Key","The Ring",
+    "The Ring 2","The Grudge","Hereditary","Drag Me to Hell","Apostle","The Witch",
+    "Sinister","LongLegs","Trap","Immaculate","The Exorcism of Emily Rose",
+    "The Ritual","As Above so Below","Get Out","Halloween (2018)","Halloween Kills",
+    "Halloween Ends","A Nightmare on Elm Street (2010)","Freddy vs Jason","Jason X","Jason Goes to Hell",
+    "Friday the 13th (2009)","Candyman","Orphan","Orphan: First Kill","The Craft",
+    "Scream","Scream 2","Scream 3","Scream 4","Scream (2022)",
+    "Midsommar","The Invisible Man","Pet Semetary","Don't Breathe","Don't Breathe 2",
+    "The Shining","Doctor Sleep","Escape Room","A Quiet Place","A Quiet Place 2",
+    "Stay Alive","The Pope's Exorcist","The Menu","Parasite","You're Next",
+    "Malignant","Fear Street Part 1: 1994","Fear Street Part 2: 1978","Fear Street Part 3: 1666","The Old Ways",
+    "Missing","No One Gets Out Alive","Hellhole","Umma","Dawn of the Dead",
+    "Shaun of the Dead","Cocaine Bear","Smile","M3GAN","Train to Busan",
+    "Paranormal Activity","Paranormal Activity 2","Evil Dead Rises","#Alive","The Wailing",
+    "I Saw the Devil","Thirst","A Tale of Two Sisters","Ghostbusters","The Witches (1990)",
+    "Sleepy Hollow","Monster House","Ghostbusters 2","Zombieland","Zombieland: Double Tap",
+    "The Watchers","28 Weeks Later","Practical Magic","The Little Vampire"
+  ];
+ 
+  // ---------------------------------------------------------------------
+  // Movie bank data source — for later use
+  // ---------------------------------------------------------------------
+  // The list above is hardcoded directly in this file for now. Per request,
+  // it hasn't been touched — but here's how to move it out later, either by
+  // importing a file or building the bank entirely from user entry:
+  //
+  // Option A — import a JSON file (no server needed):
+  //   1. Save your titles as movies.json:
+  //        [{ "title": "Movie Name" }, { "title": "Another Movie" }]
+  //      (numbers and "date added" are assigned automatically, so the file
+  //      only needs titles.)
+  //   2. Add a small <input type="file" accept=".json"> button in the Movie
+  //      Bank panel, and in its change handler read the file with
+  //      FileReader, JSON.parse the contents, then for each entry call the
+  //      same logic addMovie() uses below (skip duplicates, assign the next
+  //      number, stamp dateAdded with today's date — or, if the JSON entry
+  //      includes its own "dateAdded", keep that instead of today's date so
+  //      imported titles carry their original import date).
+  //
+  // Option B — fetch from a server-hosted file:
+  //   If this page is ever served from a real web server (not opened
+  //   directly as a local file), you can instead replace the `movies`
+  //   initial load below with:
+  //        const movies = await fetch('movies.json').then(r => r.json());
+  //   fetch() is blocked by browsers for local file:// pages, which is why
+  //   Option A (a file-picker + FileReader) is the more reliable path for a
+  //   single HTML file like this one.
+  //
+  // Option C — start empty and build the bank entirely from user entry:
+  //   Change the fallback below from `defaultTitles.map(...)` to `[]`, and
+  //   the bank will simply start empty, ready for titles to be added by hand
+  //   through the "Add a movie title" field already in the Movie Bank panel.
+  // ---------------------------------------------------------------------
+ 
+  const KEYS = {
+    movies:'nightReel_movies',
+    pool:'nightReel_pool',
+    results:'nightReel_results',
+    theme:'nightReel_theme',
+    bank:'nightReel_bankVisible',
+    hubImage:'nightReel_hubImage'
+  };
+ 
+  // Local, per-browser preferences (theme, bank panel open/closed, hub
+  // image link) stay in localStorage — these are personal display settings,
+  // not something that needs to match across visitors.
+  function load(key, fallback){
+    try{
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    }catch(e){ return fallback; }
+  }
+  function save(key, val){
+    try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){ /* storage unavailable */ }
+  }
+ 
+  // ---------------------------------------------------------------------
+  // Shared storage for movies / pool / watch history
+  // ---------------------------------------------------------------------
+  // The goal here is "everyone who opens this page sees the same spin
+  // results," which localStorage can never do — it's private to one
+  // browser on one device by definition.
+  //
+  // When this page is rendered inside Claude.ai (as an artifact), a
+  // window.storage API is injected that supports a genuinely shared scope
+  // (shared:true), so loadShared/saveShared use that automatically when
+  // it's present.
+  //
+  // IMPORTANT CAVEAT: window.storage is a Claude.ai-only API. Once this
+  // file is hosted on its own (GitHub Pages, etc.) with no Claude.ai
+  // involved, window.storage won't exist, and the code below quietly falls
+  // back to localStorage — meaning results will go back to being private
+  // per browser in that context. True shared results on a standalone site
+  // require a real backend of some kind. Two low-effort options if you get
+  // there later:
+  //   1. A small hosted key-value API (e.g. jsonbin.io, npoint.io) — create
+  //      a bin, then replace loadShared/saveShared's fallback branch with
+  //      fetch() calls to that bin's URL instead of localStorage.
+  //   2. A minimal serverless function + database (e.g. Supabase, Firebase)
+  //      if you want write protection or more structure than a single blob.
+  // Either way, the shape of loadShared/saveShared below (get/set by key)
+  // is meant to make that swap simple later.
+  async function loadShared(key, fallback){
+    if (window.storage && typeof window.storage.get === 'function'){
+      try{
+        const result = await window.storage.get(key, true);
+        return result ? JSON.parse(result.value) : fallback;
+      }catch(e){ /* key not set yet, or storage unavailable — fall through */ }
+    }
+    return load(key, fallback);
+  }
+  async function saveShared(key, val){
+    if (window.storage && typeof window.storage.set === 'function'){
+      try{
+        await window.storage.set(key, JSON.stringify(val), true);
+        return;
+      }catch(e){ /* fall back below */ }
+    }
+    save(key, val);
+  }
+ 
+  // dateAdded is null for the built-in starting list, since these weren't
+  // "added" by the user — they're the starting library. Manually added
+  // titles get today's date automatically (see addMovie() below).
+  let movies = [];
+  let pool = [];
+  let results = [];
+  const theme = load(KEYS.theme, 'light');
+  let bankVisible = load(KEYS.bank, false);
+ 
+  let rotation = 0;
+  let spinning = false;
+ 
+  // Elements
+  const canvas = document.getElementById('wheel-canvas');
+  const ctx = canvas.getContext('2d');
+  const resultEl = document.getElementById('spin-result');
+  const spinBtn = document.getElementById('spin-button');
+  const resetBtn = document.getElementById('reset-button');
+  const themeToggle = document.getElementById('theme-toggle');
+  const homeBtn = document.getElementById('home-button');
+  const bankToggle = document.getElementById('bank-toggle');
+  const bankPanel = document.getElementById('bank-panel');
+  const movieListEl = document.getElementById('movie-list');
+  const bankCountEl = document.getElementById('bank-count');
+  const newMovieInput = document.getElementById('new-movie-input');
+  const addMovieBtn = document.getElementById('add-movie-button');
+  const movieSuggestionsEl = document.getElementById('movie-suggestions');
+  const addWarningEl = document.getElementById('add-warning');
+  const resultsBody = document.querySelector('#results-table tbody');
+ 
+  // ---------- Confirm modal (avoids relying on window.confirm, which
+  // some embedded/sandboxed viewers block silently) ----------
+  const confirmOverlay = document.getElementById('confirm-overlay');
+  const confirmMessage = document.getElementById('confirm-message');
+  const confirmOkBtn = document.getElementById('confirm-ok');
+  const confirmCancelBtn = document.getElementById('confirm-cancel');
+  let confirmResolve = null;
+ 
+  function confirmDialog(message){
+    confirmMessage.textContent = message;
+    confirmOverlay.classList.add('open');
+    return new Promise(resolve => { confirmResolve = resolve; });
+  }
+  function closeConfirm(result){
+    confirmOverlay.classList.remove('open');
+    if (confirmResolve){ confirmResolve(result); confirmResolve = null; }
+  }
+  confirmOkBtn.addEventListener('click', () => closeConfirm(true));
+  confirmCancelBtn.addEventListener('click', () => closeConfirm(false));
+  confirmOverlay.addEventListener('click', (e) => { if (e.target === confirmOverlay) closeConfirm(false); });
+ 
+  function cssVar(name){
+    return getComputedStyle(document.body).getPropertyValue(name).trim();
+  }
+ 
+  function titleFor(number){
+    const m = movies.find(mv => mv.number === number);
+    return m ? m.title : 'Unknown title';
+  }
+ 
+  function skullBadge(number){
+    return `<span class="skull-badge">
+      <svg viewBox="0 0 40 44">
+        <path class="skull-shape" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
+        <ellipse class="skull-cut" cx="13.5" cy="18" rx="3.4" ry="4.2"/>
+        <ellipse class="skull-cut" cx="26.5" cy="18" rx="3.4" ry="4.2"/>
+        <path class="skull-cut" d="M20 21l-2.6 4.4h5.2z"/>
+      </svg>
+      <span class="skull-num">${number}</span>
+    </span>`;
+  }
+ 
+  const runeChars = ['ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚲ','ᚷ','ᚹ','ᚺ','ᚾ','ᛁ','ᛃ','ᛇ','ᛈ','ᛉ','ᛊ','ᛏ','ᛒ','ᛖ','ᛗ','ᛚ','ᛜ','ᛞ','ᛟ'];
+ 
+  // Center of the wheel is left blank by default, or filled with a
+  // user-supplied image (pasted as a link, stored locally). The pentagram
+  // is drawn separately on top and never covers it up. The hub sits
+  // outside the rotating canvas, so none of this spins with the wheel.
+  const hubImageEl = document.getElementById('hub-image');
+  const hubImageToggle = document.getElementById('hub-image-toggle');
+  const hubImageForm = document.getElementById('hub-image-form');
+  const hubImageInput = document.getElementById('hub-image-input');
+  const hubImageApplyBtn = document.getElementById('hub-image-apply');
+  const hubImageClearBtn = document.getElementById('hub-image-clear');
+  let hubImageUrl = load(KEYS.hubImage, '');
+ 
+  function applyHubImage(){
+    hubImageEl.style.backgroundImage = hubImageUrl ? `url("${hubImageUrl}")` : 'none';
+  }
+ 
+  function initHubImageControl(){
+    applyHubImage();
+    hubImageInput.value = hubImageUrl;
+    hubImageToggle.addEventListener('click', () => {
+      const isOpen = hubImageForm.style.display === 'flex';
+      hubImageForm.style.display = isOpen ? 'none' : 'flex';
+      if (!isOpen) hubImageInput.value = hubImageUrl;
+    });
+    hubImageApplyBtn.addEventListener('click', () => {
+      hubImageUrl = hubImageInput.value.trim();
+      save(KEYS.hubImage, hubImageUrl);
+      applyHubImage();
+    });
+    hubImageClearBtn.addEventListener('click', () => {
+      hubImageUrl = '';
+      hubImageInput.value = '';
+      save(KEYS.hubImage, hubImageUrl);
+      applyHubImage();
+    });
+  }
+ 
+  function drawRunicRing(radius, n){
+    const runeR = radius*0.94;
+    const seg = 360/n;
+    ctx.save();
+    ctx.globalAlpha = 0.5;
+    ctx.fillStyle = cssVar('--wheel-text') || '#f4ecdd';
+    ctx.font = '600 12px Georgia, "Segoe UI Historic", serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (let i=0;i<n;i++){
+      const ang = ((i+0.5)*seg - 90) * Math.PI/180;
+      const x = radius + runeR*Math.cos(ang);
+      const y = radius + runeR*Math.sin(ang);
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(ang + Math.PI/2);
+      ctx.fillText(runeChars[i % runeChars.length], 0, 0);
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+ 
+  // ---------- Wheel ----------
+  function drawWheel(){
+    const size = canvas.width;
+    const radius = size/2;
+    ctx.clearRect(0,0,size,size);
+ 
+    const colorA = cssVar('--wheel-a') || '#241a30';
+    const colorB = cssVar('--wheel-b') || '#3c2454';
+    const textColor = cssVar('--wheel-text') || '#f4ecdd';
+ 
+    if (pool.length === 0){
+      ctx.beginPath();
+      ctx.arc(radius, radius, radius-4, 0, Math.PI*2);
+      ctx.fillStyle = colorA;
+      ctx.fill();
+      ctx.fillStyle = textColor;
+      ctx.font = '600 18px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Wheel is empty', radius, radius);
+      return;
+    }
+ 
+    const n = pool.length;
+    const seg = 360/n;
+ 
+    // wedge fills
+    pool.forEach((num, i) => {
+      const start = (i*seg - 90) * Math.PI/180;
+      const end = ((i+1)*seg - 90) * Math.PI/180;
+      ctx.beginPath();
+      ctx.moveTo(radius, radius);
+      ctx.arc(radius, radius, radius-4, start, end);
+      ctx.closePath();
+      ctx.fillStyle = i % 2 === 0 ? colorA : colorB;
+      ctx.fill();
+    });
+ 
+    // number labels, running radially (the long way) so they aren't squeezed into a narrow arc
+    pool.forEach((num, i) => {
+      const start = (i*seg - 90) * Math.PI/180;
+      const end = ((i+1)*seg - 90) * Math.PI/180;
+      const mid = (start+end)/2;
+      const labelR = radius*0.80;
+      const x = radius + labelR*Math.cos(mid);
+      const y = radius + labelR*Math.sin(mid);
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(mid + Math.PI);
+      ctx.fillStyle = textColor;
+      ctx.font = '600 14px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(num, 0, 0);
+      ctx.restore();
+    });
+ 
+    // one runic mark per number section, in the thin band between the numbers and the rim
+    drawRunicRing(radius, n);
+  }
+ 
+  function spin(){
+    if (spinning) return;
+    if (pool.length === 0){
+      resultEl.textContent = 'The wheel is empty — add movies to the bank first.';
+      return;
+    }
+ 
+    spinning = true;
+    spinBtn.disabled = true;
+    spinBtn.textContent = 'Spinning…';
+    resultEl.textContent = 'Spinning…';
+ 
+    const idx = Math.floor(Math.random()*pool.length);
+    const selectedNumber = pool[idx];
+    const n = pool.length;
+    const seg = 360/n;
+    const centerAngle = (idx + 0.5) * seg; // degrees from top, clockwise
+ 
+    const targetMod = (360 - centerAngle) % 360;
+    const currentMod = ((rotation % 360) + 360) % 360;
+    const forward = ((targetMod - currentMod) + 360) % 360;
+    const extraSpins = 6;
+    rotation = rotation + extraSpins*360 + forward;
+ 
+    canvas.style.transform = `rotate(${rotation}deg)`;
+ 
+    const onDone = () => {
+      canvas.removeEventListener('transitionend', onDone);
+      finishSpin(selectedNumber, idx);
+    };
+    canvas.addEventListener('transitionend', onDone);
+  }
+ 
+  function finishSpin(selectedNumber, idx){
+    const movieTitle = titleFor(selectedNumber);
+    resultEl.innerHTML = `The reel stopped on <span class="num">#${selectedNumber}</span> — ${escapeHtml(movieTitle)}`;
+ 
+    const entry = {number: selectedNumber, movieTitle, date:''};
+    results.push(entry);
+    saveShared(KEYS.results, results);
+    renderResults();
+ 
+    pool.splice(idx,1);
+    saveShared(KEYS.pool, pool);
+ 
+    drawWheel();
+    renderBank();
+ 
+    spinning = false;
+    spinBtn.disabled = false;
+    spinBtn.textContent = 'Spin the wheel';
+  }
+ 
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+ 
+  // ---------- Results table ----------
+  function addResultRow(entry){
+    const row = document.createElement('tr');
+ 
+    const numCell = document.createElement('td');
+    numCell.innerHTML = skullBadge(entry.number);
+ 
+    const titleCell = document.createElement('td');
+    titleCell.textContent = entry.movieTitle;
+ 
+    const dateCell = document.createElement('td');
+    const dateInput = document.createElement('input');
+    dateInput.type = 'date';
+    dateInput.className = 'date-input';
+    dateInput.value = entry.date || '';
+    dateInput.addEventListener('change', function(){
+      const i = results.findIndex(r => r === entry);
+      if (i > -1){
+        results[i].date = this.value;
+        saveShared(KEYS.results, results);
+      }
+    });
+    dateCell.appendChild(dateInput);
+ 
+    row.appendChild(numCell);
+    row.appendChild(titleCell);
+    row.appendChild(dateCell);
+    resultsBody.appendChild(row);
+  }
+ 
+  function renderResults(){
+    resultsBody.innerHTML = '';
+    if (results.length === 0){
+      const row = document.createElement('tr');
+      const cell = document.createElement('td');
+      cell.colSpan = 3;
+      cell.className = 'empty-note';
+      cell.textContent = 'No films watched yet. Spin the wheel to begin.';
+      row.appendChild(cell);
+      resultsBody.appendChild(row);
+      return;
+    }
+    results.forEach(entry => addResultRow(entry));
+  }
+ 
+  // ---------- Movie bank ----------
+  function formatDate(iso){
+    if (!iso) return '—';
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return '—';
+    return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
+  }
+ 
+  function renderBank(){
+    movieListEl.innerHTML = '';
+    const sorted = [...movies].sort((a,b)=>a.number-b.number);
+    sorted.forEach(m => {
+      const row = document.createElement('div');
+      const inPool = pool.includes(m.number);
+      row.className = 'movie-row' + (inPool ? '' : ' drawn');
+ 
+      const badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.textContent = '#' + m.number;
+ 
+      const title = document.createElement('span');
+      title.className = 'title';
+      title.textContent = m.title;
+ 
+      const added = document.createElement('span');
+      added.className = 'added';
+      added.textContent = formatDate(m.dateAdded);
+      added.title = 'Date added';
+ 
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = 'Remove';
+      removeBtn.addEventListener('click', () => removeMovie(m.number));
+ 
+      row.appendChild(badge);
+      row.appendChild(title);
+      row.appendChild(added);
+      row.appendChild(removeBtn);
+      movieListEl.appendChild(row);
+    });
+    bankCountEl.textContent = `${pool.length} in the wheel · ${movies.length} total`;
+  }
+ 
+  // ---------- Duplicate check + live search ----------
+  // "Search" here is a simple case-insensitive substring match against the
+  // movie bank and watch history, run again on every keystroke — not a
+  // fuzzy or ranked search, just an incremental filter, which is enough to
+  // catch near-duplicates as the person types.
+  function normalizeTitle(t){
+    return (t || '').trim().toLowerCase();
+  }
+ 
+  function findExactDuplicate(title){
+    const norm = normalizeTitle(title);
+    if (!norm) return null;
+    const inBank = movies.find(m => normalizeTitle(m.title) === norm);
+    if (inBank) return {source:'bank', title: inBank.title};
+    const inHistory = results.find(r => normalizeTitle(r.movieTitle) === norm);
+    if (inHistory) return {source:'history', title: inHistory.movieTitle};
+    return null;
+  }
+ 
+  function liveSearch(query){
+    const norm = normalizeTitle(query);
+    if (!norm) return [];
+    const seen = new Set();
+    const matches = [];
+    movies.forEach(m => {
+      const key = normalizeTitle(m.title);
+      if (key.includes(norm) && !seen.has(key)){
+        seen.add(key);
+        matches.push({title:m.title, source:'bank'});
+      }
+    });
+    results.forEach(r => {
+      const key = normalizeTitle(r.movieTitle);
+      if (key.includes(norm) && !seen.has(key)){
+        seen.add(key);
+        matches.push({title:r.movieTitle, source:'history'});
+      }
+    });
+    return matches.slice(0, 6);
+  }
+ 
+  function renderSuggestions(matches){
+    movieSuggestionsEl.innerHTML = '';
+    if (matches.length === 0){
+      movieSuggestionsEl.classList.remove('open');
+      return;
+    }
+    matches.forEach(m => {
+      const item = document.createElement('div');
+      item.className = 'suggestion-item';
+      const label = document.createElement('span');
+      label.textContent = m.title;
+      const tag = document.createElement('span');
+      tag.className = 'suggestion-tag ' + m.source;
+      tag.textContent = m.source === 'bank' ? 'In bank' : 'Watched';
+      item.appendChild(label);
+      item.appendChild(tag);
+      movieSuggestionsEl.appendChild(item);
+    });
+    movieSuggestionsEl.classList.add('open');
+  }
+ 
+  function checkAddState(){
+    const query = newMovieInput.value;
+    renderSuggestions(liveSearch(query));
+    const dup = findExactDuplicate(query);
+    addMovieBtn.disabled = !!dup;
+    if (dup){
+      addWarningEl.textContent = dup.source === 'bank'
+        ? `Already in your movie bank as "${dup.title}".`
+        : `Already in your watch history as "${dup.title}".`;
+    } else {
+      addWarningEl.textContent = '';
+    }
+    return !dup;
+  }
+ 
+  function addMovie(){
+    const val = newMovieInput.value.trim();
+    if (!val) return;
+    if (findExactDuplicate(val)){
+      checkAddState();
+      return;
+    }
+    const nextNum = movies.reduce((max,m)=>Math.max(max,m.number),0) + 1;
+    const today = new Date().toISOString().slice(0,10);
+    movies.push({number: nextNum, title: val, dateAdded: today});
+    pool.push(nextNum);
+    saveShared(KEYS.movies, movies);
+    saveShared(KEYS.pool, pool);
+    newMovieInput.value = '';
+    renderSuggestions([]);
+    addWarningEl.textContent = '';
+    addMovieBtn.disabled = false;
+    drawWheel();
+    renderBank();
+  }
+ 
+  async function removeMovie(number){
+    const movie = movies.find(m => m.number === number);
+    if (!movie) return;
+    const ok = await confirmDialog(`Remove "${movie.title}" from the bank?`);
+    if (!ok) return;
+    movies = movies.filter(m => m.number !== number);
+    pool = pool.filter(n => n !== number);
+    saveShared(KEYS.movies, movies);
+    saveShared(KEYS.pool, pool);
+    drawWheel();
+    renderBank();
+  }
+ 
+  // ---------- Reset / theme / bank visibility ----------
+  async function resetGame(){
+    const ok = await confirmDialog('Reset the wheel and clear your watch history?');
+    if (!ok) return;
+    pool = movies.map(m=>m.number);
+    results = [];
+    rotation = 0;
+    saveShared(KEYS.pool, pool);
+    saveShared(KEYS.results, results);
+    canvas.style.transition = 'none';
+    canvas.style.transform = 'rotate(0deg)';
+    void canvas.offsetWidth;
+    canvas.style.transition = '';
+    resultEl.textContent = 'Press spin to draw tonight\'s film.';
+    drawWheel();
+    renderResults();
+    renderBank();
+  }
+ 
+  function applyTheme(mode){
+    document.body.classList.remove('light-mode','dark-mode');
+    document.body.classList.add(mode === 'dark' ? 'dark-mode' : 'light-mode');
+    themeToggle.innerHTML = mode === 'dark' ? '&#9789;' : '&#9788;';
+    save(KEYS.theme, mode);
+    drawWheel();
+  }
+ 
+  function toggleTheme(){
+    const isDark = document.body.classList.contains('dark-mode');
+    applyTheme(isDark ? 'light' : 'dark');
+  }
+ 
+  function toggleBank(){
+    bankVisible = !bankVisible;
+    bankPanel.style.display = bankVisible ? 'block' : 'none';
+    bankToggle.textContent = bankVisible ? 'Hide movie bank' : 'Show movie bank';
+    save(KEYS.bank, bankVisible);
+  }
+ 
+  // ---------- Init ----------
+  async function init(){
+    applyTheme(theme);
+    initHubImageControl();
+ 
+    const defaultMovies = defaultTitles.map((t,i)=>({number:i+1, title:t, dateAdded:null}));
+    movies = await loadShared(KEYS.movies, defaultMovies);
+    pool = await loadShared(KEYS.pool, movies.map(m=>m.number));
+    results = await loadShared(KEYS.results, []);
+ 
+    drawWheel();
+    renderResults();
+    renderBank();
+    bankPanel.style.display = bankVisible ? 'block' : 'none';
+    bankToggle.textContent = bankVisible ? 'Hide movie bank' : 'Show movie bank';
+  }
+ 
+  spinBtn.addEventListener('click', spin);
+  resetBtn.addEventListener('click', resetGame);
+  themeToggle.addEventListener('click', toggleTheme);
+  bankToggle.addEventListener('click', toggleBank);
+  addMovieBtn.addEventListener('click', addMovie);
+  newMovieInput.addEventListener('input', checkAddState);
+  newMovieInput.addEventListener('focus', checkAddState);
+  newMovieInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !addMovieBtn.disabled) addMovie(); });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.add-input-wrap')) renderSuggestions([]);
+  });
+  homeBtn.addEventListener('click', () => { /* reserved for future use */ });
+ 
+  init();
+})();
+</script>
 </body>
 </html>
+ 
