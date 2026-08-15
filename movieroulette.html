@@ -77,6 +77,82 @@
   .icon-btn:hover{transform:translateY(-1px);}
   .icon-btn:active{transform:translateY(0);}
 
+  .signed-in-as{
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:center;
+    flex:1;
+  }
+  .signed-in-as strong{color:var(--ink); font-weight:600;}
+
+  /* ---- Login gate ---- */
+  .login-gate{
+    position:fixed;
+    inset:0;
+    z-index:50;
+    background:var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .login-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:32px 28px;
+    max-width:320px;
+    width:100%;
+    text-align:center;
+    box-shadow:0 20px 50px -18px rgba(0,0,0,.5);
+  }
+  .login-box .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--accent);
+    margin:0 0 6px;
+  }
+  .login-box h2{
+    font-family:'Cinzel', serif;
+    font-size:20px;
+    margin:0 0 10px;
+  }
+  .login-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0 0 18px;
+  }
+  #login-code{
+    width:100%;
+    padding:11px 14px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    color:var(--ink);
+    font-size:14px;
+    margin-bottom:12px;
+    text-align:center;
+    letter-spacing:.08em;
+  }
+  #login-submit{
+    width:100%;
+    background:var(--accent);
+    color:#fff8ef;
+    border-radius:10px;
+    padding:11px;
+    font-weight:600;
+    font-size:14px;
+  }
+  .login-error{
+    min-height:16px;
+    font-size:12px;
+    color:var(--danger);
+    margin:10px 0 0;
+  }
+
   header.hero{
     text-align:center;
     margin:6px 0 30px;
@@ -113,6 +189,7 @@
     position:relative;
     width:min(94vw,520px);
     aspect-ratio:1/1;
+    background:var(--bg);
   }
   .pointer{
     position:absolute;
@@ -411,6 +488,7 @@
   }
   .movie-list-header .badge{width:28px; flex-shrink:0;}
   .movie-list-header .title{flex:1;}
+  .movie-list-header .by{min-width:72px; text-align:right;}
   .movie-list-header .added{min-width:64px; text-align:right;}
   .movie-list-header .header-spacer{min-width:58px;}
   #movie-list{
@@ -439,6 +517,15 @@
   .movie-row .title{
     flex:1;
     font-size:14px;
+  }
+  .movie-row .by{
+    font-size:11px;
+    color:var(--ink-soft);
+    min-width:72px;
+    text-align:right;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
   }
   .movie-row .added{
     font-family:'JetBrains Mono', monospace;
@@ -565,6 +652,7 @@
     stroke:var(--ink-soft);
     fill:none;
     stroke-width:1;
+    z-index:2;
   }
   .bg-web--tl{top:-6%;left:-6%;}
   .bg-web--br{bottom:-8%;right:-8%; transform:rotate(180deg);}
@@ -596,11 +684,14 @@
   .bg-witchhat--1{top:8%; left:58%; width:42px; transform:rotate(-6deg);}
   .bg-witchhat--2{top:52%; left:10%; width:36px; transform:rotate(8deg);}
   .bg-witchhat--3{bottom:44%; right:34%; width:30px; transform:rotate(-4deg);}
+  .bg-witchhat--4{top:26%; right:8%; width:34px; transform:rotate(10deg);}
+  .bg-witchhat--5{bottom:6%; right:22%; width:28px; transform:rotate(-8deg);}
 
   .bg-broom{color:var(--ink-soft);}
   .bg-broom--1{bottom:20%; right:4%; width:26px; transform:rotate(14deg);}
   .bg-broom--2{top:3%; left:7%; width:22px; transform:rotate(-10deg);}
   .bg-broom--3{top:34%; right:18%; width:20px; transform:rotate(6deg);}
+  .bg-broom--4{top:44%; left:18%; width:24px; transform:rotate(-16deg);}
 
   .bg-spider-rig{position:absolute; width:0; height:0;}
   .spider-thread{
@@ -643,12 +734,15 @@
   .bg-spider-rig--2 .bg-spider{width:30px; animation-name:spider-bob-flip;}
   .bg-spider-rig--3{top:22%; right:32%;}
   .bg-spider-rig--3 .bg-spider{width:24px; animation-delay:1.2s;}
+  .bg-spider-rig--4{top:40%; left:20%;}
+  .bg-spider-rig--4 .bg-spider{width:26px; animation-delay:2.4s;}
 
   .bg-skull{color:var(--ink-soft);}
   .bg-skull--1{top:48%; right:4%; width:32px;}
   .bg-skull--2{top:20%; left:44%; width:26px;}
   .bg-skull--3{bottom:26%; left:36%; width:22px;}
   .bg-skull--4{top:66%; left:24%; width:24px; transform:rotate(-8deg);}
+  .bg-skull--5{top:80%; left:12%; width:20px; transform:rotate(6deg);}
 
   .bg-sign{opacity:.16; color:var(--ink-soft);}
   .bg-sign--1{top:36%; left:1%; width:60px; transform:rotate(-4deg);}
@@ -692,6 +786,7 @@
   .bg-ghost--1{top:16%; left:38%; width:34px; animation-delay:.4s;}
   .bg-ghost--2{bottom:36%; right:14%; width:28px; animation-delay:2.6s;}
   .bg-ghost--3{top:70%; left:48%; width:24px; animation-delay:1.3s;}
+  .bg-ghost--4{top:26%; left:16%; width:26px; animation-delay:1.8s;}
   @keyframes ghost-float{
     0%,100%{transform:translate(0,0);}
     50%{transform:translate(5px,-16px);}
@@ -702,7 +797,8 @@
     left:0; right:0; bottom:0;
     width:100%;
     height:auto;
-    opacity:.75;
+    opacity:.7;
+    z-index:1;
   }
   .bg-fence rect{
     fill:#141210;
@@ -769,12 +865,25 @@
 </style>
 </head>
 <body class="light-mode">
+  <div id="login-gate" class="login-gate">
+    <div class="login-box">
+      <p class="eyebrow">Night Reel</p>
+      <h2>Enter your access code</h2>
+      <p class="login-sub">This code just identifies who's using the bank — it's not real security. Anyone with the page's source can read the code list.</p>
+      <input type="password" id="login-code" placeholder="Access code" autocomplete="off">
+      <button id="login-submit">Enter</button>
+      <p id="login-error" class="login-error"></p>
+    </div>
+  </div>
+
   <div id="bg-fx" aria-hidden="true">
     <svg class="bg-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <svg class="bg-web bg-web--tl" viewBox="0 0 120 120">
-      <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
-      <path d="M8,4 Q30,20 24,44 Q46,40 56,58 Q40,70 44,92"/>
-      <path d="M20,10 Q50,34 42,66 Q70,60 80,84"/>
+      <path d="M0,0 L120,40 M0,0 L120,80 M0,0 L100,100 M0,0 L70,110 M0,0 L40,118 M0,0 L15,120 M0,0 L120,15"/>
+      <path d="M6,3 Q26,14 22,32 Q40,28 48,42 Q34,50 38,66"/>
+      <path d="M14,7 Q40,22 34,46 Q56,42 64,58 Q46,66 50,86"/>
+      <path d="M24,12 Q56,30 48,60 Q74,56 82,74 Q60,82 64,104"/>
+      <path d="M36,18 Q72,38 62,74 Q90,70 98,90"/>
     </svg>
     <svg class="bg-web bg-web--br" viewBox="0 0 120 120">
       <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
@@ -783,9 +892,11 @@
     </svg>
 
     <svg class="bg-web bg-web--tr" viewBox="0 0 120 120" style="top:-6%; right:-6%; transform:rotate(90deg);">
-      <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
-      <path d="M8,4 Q30,20 24,44 Q46,40 56,58 Q40,70 44,92"/>
-      <path d="M20,10 Q50,34 42,66 Q70,60 80,84"/>
+      <path d="M0,0 L120,40 M0,0 L120,80 M0,0 L100,100 M0,0 L70,110 M0,0 L40,118 M0,0 L15,120 M0,0 L120,15"/>
+      <path d="M6,3 Q26,14 22,32 Q40,28 48,42 Q34,50 38,66"/>
+      <path d="M14,7 Q40,22 34,46 Q56,42 64,58 Q46,66 50,86"/>
+      <path d="M24,12 Q56,30 48,60 Q74,56 82,74 Q60,82 64,104"/>
+      <path d="M36,18 Q72,38 62,74 Q90,70 98,90"/>
     </svg>
     <svg class="bg-web bg-web--bl" viewBox="0 0 120 120" style="bottom:-6%; left:-6%; transform:rotate(-90deg);">
       <path d="M0,0 L120,60 M0,0 L90,90 M0,0 L60,120 M0,0 L20,120"/>
@@ -836,6 +947,16 @@
       <path class="bg-deco-body" d="M16 46 L30 4 L44 46 Z"/>
       <rect x="20" y="38" width="20" height="5" fill="var(--bg)" opacity=".5"/>
     </svg>
+    <svg class="bg-deco bg-witchhat bg-witchhat--4" viewBox="0 0 60 60">
+      <ellipse class="bg-deco-body" cx="30" cy="46" rx="26" ry="6"/>
+      <path class="bg-deco-body" d="M16 46 L30 4 L44 46 Z"/>
+      <rect x="20" y="38" width="20" height="5" fill="var(--bg)" opacity=".5"/>
+    </svg>
+    <svg class="bg-deco bg-witchhat bg-witchhat--5" viewBox="0 0 60 60">
+      <ellipse class="bg-deco-body" cx="30" cy="46" rx="26" ry="6"/>
+      <path class="bg-deco-body" d="M16 46 L30 4 L44 46 Z"/>
+      <rect x="20" y="38" width="20" height="5" fill="var(--bg)" opacity=".5"/>
+    </svg>
 
     <svg class="bg-deco bg-broom bg-broom--1" viewBox="0 0 40 90">
       <path class="bg-deco-body" d="M20 2 L20 58" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
@@ -850,6 +971,12 @@
       <rect class="bg-deco-body" x="14" y="54" width="12" height="6" rx="1"/>
     </svg>
     <svg class="bg-deco bg-broom bg-broom--3" viewBox="0 0 40 90">
+      <path class="bg-deco-body" d="M20 2 L20 58" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path class="bg-deco-body" d="M8 58 L32 58 L36 84 Q20 78 4 84 Z"/>
+      <path d="M10 60 L9 82 M15 59 L13 85 M20 58 L20 87 M25 59 L27 85 M30 60 L31 82" stroke="var(--bg)" stroke-width="1.4" opacity=".5"/>
+      <rect class="bg-deco-body" x="14" y="54" width="12" height="6" rx="1"/>
+    </svg>
+    <svg class="bg-deco bg-broom bg-broom--4" viewBox="0 0 40 90">
       <path class="bg-deco-body" d="M20 2 L20 58" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
       <path class="bg-deco-body" d="M8 58 L32 58 L36 84 Q20 78 4 84 Z"/>
       <path d="M10 60 L9 82 M15 59 L13 85 M20 58 L20 87 M25 59 L27 85 M30 60 L31 82" stroke="var(--bg)" stroke-width="1.4" opacity=".5"/>
@@ -907,6 +1034,23 @@
         <circle class="bg-deco-eyes eyes-red" cx="22.5" cy="11" r="1.2"/>
       </svg>
     </div>
+    <div class="bg-spider-rig bg-spider-rig--4">
+      <div class="spider-thread"></div>
+      <svg class="bg-spider" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="24" rx="7" ry="9"/>
+        <circle cx="20" cy="12" r="5"/>
+        <path d="M14 14 Q4 10 2 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 18 Q2 18 0 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 24 Q2 26 1 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 29 Q6 34 4 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M26 14 Q36 10 38 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 18 Q38 18 40 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 24 Q38 26 39 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M25 29 Q34 34 36 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle class="bg-deco-eyes eyes-red" cx="17.5" cy="11" r="1.2"/>
+        <circle class="bg-deco-eyes eyes-red" cx="22.5" cy="11" r="1.2"/>
+      </svg>
+    </div>
 
     <svg class="bg-deco bg-skull bg-skull--1" viewBox="0 0 40 44">
       <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
@@ -924,6 +1068,11 @@
       <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
     </svg>
     <svg class="bg-deco bg-skull bg-skull--4" viewBox="0 0 40 44">
+      <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
+      <circle class="bg-deco-eyes" cx="13.5" cy="18" r="2.4"/>
+      <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
+    </svg>
+    <svg class="bg-deco bg-skull bg-skull--5" viewBox="0 0 40 44">
       <path class="bg-deco-body" d="M20 2C11 2 5 8 5 16c0 5 2 8 4 10l-1 6c-.3 1.6 1.1 2.7 2.5 2.1h2.9l1-3h1.4l1 3h1.4l1-3h1.4l1 3h2.9c1.4.6 2.8-.5 2.5-2.1l-1-6c2-2 4-5 4-10 0-8-6-14-15-14z"/>
       <circle class="bg-deco-eyes" cx="13.5" cy="18" r="2.4"/>
       <circle class="bg-deco-eyes" cx="26.5" cy="18" r="2.4"/>
@@ -1005,6 +1154,11 @@
       <circle class="bg-deco-eyes eyes-blue" cx="15" cy="18" r="1.8"/>
       <circle class="bg-deco-eyes eyes-blue" cx="25" cy="18" r="1.8"/>
     </svg>
+    <svg class="bg-ghost bg-ghost--4" viewBox="0 0 40 46">
+      <path d="M20 2c9 0 15 7 15 16v20l-4-5-4 5-4-5-4 5-4-5-4 5V18C5 9 11 2 20 2z"/>
+      <circle class="bg-deco-eyes eyes-blue" cx="15" cy="18" r="1.8"/>
+      <circle class="bg-deco-eyes eyes-blue" cx="25" cy="18" r="1.8"/>
+    </svg>
 
     <svg class="bg-deco bg-sign bg-sign--1" viewBox="0 0 60 70">
       <rect x="14" y="20" width="6" height="46"/>
@@ -1044,9 +1198,10 @@
     </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap" id="app-wrap" style="display:none;">
     <div class="topbar">
       <button id="home-button" class="icon-btn" title="Home" aria-label="Home">&#8962;</button>
+      <span class="signed-in-as">Signed in as <strong id="current-user-name"></strong> · <button id="logout-btn" class="link-btn">Log out</button></span>
       <button id="theme-toggle" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">&#9788;</button>
     </div>
 
@@ -1117,6 +1272,7 @@
       <div class="movie-list-header">
         <span class="badge">No.</span>
         <span class="title">Title</span>
+        <span class="by">Added by</span>
         <span class="added">Date added</span>
         <span class="header-spacer"></span>
       </div>
@@ -1276,6 +1432,11 @@
   let results = [];
   const theme = load(KEYS.theme, 'light');
   let bankVisible = load(KEYS.bank, false);
+
+  // Apply the theme immediately (before login) so the access-code screen
+  // matches the person's saved light/dark preference.
+  document.body.classList.remove('light-mode');
+  document.body.classList.add(theme === 'dark' ? 'dark-mode' : 'light-mode');
 
   let rotation = 0;
   let spinning = false;
@@ -1631,6 +1792,11 @@
       title.className = 'title';
       title.textContent = m.title;
 
+      const by = document.createElement('span');
+      by.className = 'by';
+      by.textContent = m.addedBy || '—';
+      by.title = 'Added by';
+
       const added = document.createElement('span');
       added.className = 'added';
       added.textContent = formatDate(m.dateAdded);
@@ -1642,6 +1808,7 @@
 
       row.appendChild(badge);
       row.appendChild(title);
+      row.appendChild(by);
       row.appendChild(added);
       row.appendChild(removeBtn);
       movieListEl.appendChild(row);
@@ -1735,7 +1902,7 @@
     }
     const nextNum = movies.reduce((max,m)=>Math.max(max,m.number),0) + 1;
     const today = new Date().toISOString().slice(0,10);
-    movies.push({number: nextNum, title: val, dateAdded: today});
+    movies.push({number: nextNum, title: val, dateAdded: today, addedBy: currentUser});
     pool.push(nextNum);
     saveShared(KEYS.movies, movies);
     saveShared(KEYS.pool, pool);
@@ -1804,7 +1971,7 @@
     applyTheme(theme);
     initHubImageControl();
 
-    const defaultMovies = defaultTitles.map((t,i)=>({number:i+1, title:t, dateAdded:null}));
+    const defaultMovies = defaultTitles.map((t,i)=>({number:i+1, title:t, dateAdded:null, addedBy:null}));
     movies = await loadShared(KEYS.movies, defaultMovies);
     pool = await loadShared(KEYS.pool, movies.map(m=>m.number));
     results = await loadShared(KEYS.results, []);
@@ -1829,7 +1996,72 @@
   });
   homeBtn.addEventListener('click', () => { /* reserved for future use */ });
 
-  init();
+  // ---------------------------------------------------------------------
+  // Access codes — identifies who's using the bank, NOT real security
+  // ---------------------------------------------------------------------
+  // This is a static HTML file with no server, so there is no way to keep
+  // these codes truly secret: anyone who views the page source (or opens
+  // browser devtools) can read this list directly, and anyone could also
+  // just delete/bypass the gate in devtools. Treat this as a light
+  // "who's who" convenience for a small trusted group, not a lock.
+  //
+  // Replace these with your own ~10 names/codes before sharing the page.
+  const ACCESS_CODES = {
+    'raven01': 'Guest 1',
+    'raven02': 'Guest 2',
+    'raven03': 'Guest 3',
+    'raven04': 'Guest 4',
+    'raven05': 'Guest 5',
+    'raven06': 'Guest 6',
+    'raven07': 'Guest 7',
+    'raven08': 'Guest 8',
+    'raven09': 'Guest 9',
+    'raven10': 'Guest 10'
+  };
+  const LOGIN_KEY = 'nightReel_currentUser';
+  let currentUser = null;
+
+  const loginGate = document.getElementById('login-gate');
+  const appWrap = document.getElementById('app-wrap');
+  const loginCodeInput = document.getElementById('login-code');
+  const loginSubmitBtn = document.getElementById('login-submit');
+  const loginErrorEl = document.getElementById('login-error');
+  const currentUserNameEl = document.getElementById('current-user-name');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  function enterApp(name){
+    currentUser = name;
+    localStorage.setItem(LOGIN_KEY, name);
+    loginGate.style.display = 'none';
+    appWrap.style.display = '';
+    currentUserNameEl.textContent = name;
+    init();
+  }
+
+  function attemptLogin(){
+    const code = loginCodeInput.value.trim();
+    const name = ACCESS_CODES[code];
+    if (name){
+      loginErrorEl.textContent = '';
+      enterApp(name);
+    } else {
+      loginErrorEl.textContent = "That code isn't recognized.";
+    }
+  }
+
+  loginSubmitBtn.addEventListener('click', attemptLogin);
+  loginCodeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem(LOGIN_KEY);
+    location.reload();
+  });
+
+  const savedUser = localStorage.getItem(LOGIN_KEY);
+  if (savedUser && Object.values(ACCESS_CODES).includes(savedUser)){
+    enterApp(savedUser);
+  } else {
+    loginCodeInput.focus();
+  }
 })();
 </script>
 </body>
