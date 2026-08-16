@@ -1392,15 +1392,28 @@
   // remote data instead of its own local copy. See the deployment
   // instructions provided separately for the exact steps.
   //
-  // Leave this blank and the app still works fine — it just falls back to
-  // window.storage (only real inside a Claude.ai artifact) and then to
-  // plain localStorage (private per browser), same as before.
-  const SYNC_ENDPOINT = 'https://moveinight-reel-sync.malikhub.workers.dev'; // e.g. ''
+  // SYNC_SECRET must match the SYNC_SECRET value you set as an encrypted
+  // Secret on the Worker itself. It's sent as a header on every request so
+  // the Worker rejects anyone who doesn't have it — mainly useful for
+  // stopping someone who merely stumbles on the Worker's bare URL.
+  // IMPORTANT: because this file is public (GitHub Pages), this secret is
+  // NOT actually secret — anyone can view-source this page and read it.
+  // It only stops casual/accidental direct access, not a deliberate look
+  // at the page's source. For real protection, put the Worker behind
+  // Cloudflare Access instead.
+  //
+  // Leave SYNC_ENDPOINT blank and the app still works fine — it just falls
+  // back to window.storage (only real inside a Claude.ai artifact) and
+  // then to plain localStorage (private per browser), same as before.
+  const SYNC_ENDPOINT = 'https://moveinight-reel-sync.malikhub.workers.dev'; // Cloudflare Worker URL
+  const SYNC_SECRET = 'entrusts.15blockbuster.!mortgaging';   // must match the Worker's SYNC_SECRET value exactly
 
   async function loadShared(key, fallback){
     if (SYNC_ENDPOINT){
       try{
-        const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`);
+        const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`, {
+          headers: {'X-Sync-Key': SYNC_SECRET}
+        });
         if (res.ok){
           const value = await res.json();
           return (value !== null && value !== undefined) ? value : fallback;
@@ -1420,7 +1433,7 @@
       try{
         const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`, {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {'Content-Type': 'application/json', 'X-Sync-Key': SYNC_SECRET},
           body: JSON.stringify(val)
         });
         if (res.ok) return;
