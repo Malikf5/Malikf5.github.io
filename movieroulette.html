@@ -1395,7 +1395,7 @@
   // Leave this blank and the app still works fine — it just falls back to
   // window.storage (only real inside a Claude.ai artifact) and then to
   // plain localStorage (private per browser), same as before.
-  const SYNC_ENDPOINT = 'moveinight-reel-sync.malikhub.workers.dev'; // e.g. ''
+  const SYNC_ENDPOINT = 'https://moveinight-reel-sync.malikhub.workers.dev'; // e.g. ''
 
   async function loadShared(key, fallback){
     if (SYNC_ENDPOINT){
