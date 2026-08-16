@@ -189,7 +189,6 @@
     position:relative;
     width:min(94vw,520px);
     aspect-ratio:1/1;
-    background:var(--bg);
   }
   .pointer{
     position:absolute;
@@ -1382,30 +1381,32 @@
   // ---------------------------------------------------------------------
   // Shared storage for movies / pool / watch history
   // ---------------------------------------------------------------------
-  // The goal here is "everyone who opens this page sees the same spin
-  // results," which localStorage can never do — it's private to one
-  // browser on one device by definition.
+  // The goal: everyone who opens this page sees the same watch history —
+  // one person spins, everyone who loads the page after that sees the
+  // result. localStorage can't do that; it's private to one browser.
   //
-  // When this page is rendered inside Claude.ai (as an artifact), a
-  // window.storage API is injected that supports a genuinely shared scope
-  // (shared:true), so loadShared/saveShared use that automatically when
-  // it's present.
+  // SYNC_ENDPOINT points at a small Cloudflare Worker (see
+  // night-reel-sync-worker.js, shipped alongside this file) that reads and
+  // writes a tiny shared key-value store. Deploy that Worker once, paste
+  // its URL below, and every visitor's browser reads/writes the same
+  // remote data instead of its own local copy. See the deployment
+  // instructions provided separately for the exact steps.
   //
-  // IMPORTANT CAVEAT: window.storage is a Claude.ai-only API. Once this
-  // file is hosted on its own (GitHub Pages, etc.) with no Claude.ai
-  // involved, window.storage won't exist, and the code below quietly falls
-  // back to localStorage — meaning results will go back to being private
-  // per browser in that context. True shared results on a standalone site
-  // require a real backend of some kind. Two low-effort options if you get
-  // there later:
-  //   1. A small hosted key-value API (e.g. jsonbin.io, npoint.io) — create
-  //      a bin, then replace loadShared/saveShared's fallback branch with
-  //      fetch() calls to that bin's URL instead of localStorage.
-  //   2. A minimal serverless function + database (e.g. Supabase, Firebase)
-  //      if you want write protection or more structure than a single blob.
-  // Either way, the shape of loadShared/saveShared below (get/set by key)
-  // is meant to make that swap simple later.
+  // Leave this blank and the app still works fine — it just falls back to
+  // window.storage (only real inside a Claude.ai artifact) and then to
+  // plain localStorage (private per browser), same as before.
+  const SYNC_ENDPOINT = 'moveinight-reel-sync.malikhub.workers.dev'; // e.g. ''
+
   async function loadShared(key, fallback){
+    if (SYNC_ENDPOINT){
+      try{
+        const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`);
+        if (res.ok){
+          const value = await res.json();
+          return (value !== null && value !== undefined) ? value : fallback;
+        }
+      }catch(e){ /* Worker unreachable — fall through to other options */ }
+    }
     if (window.storage && typeof window.storage.get === 'function'){
       try{
         const result = await window.storage.get(key, true);
@@ -1415,6 +1416,16 @@
     return load(key, fallback);
   }
   async function saveShared(key, val){
+    if (SYNC_ENDPOINT){
+      try{
+        const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(val)
+        });
+        if (res.ok) return;
+      }catch(e){ /* Worker unreachable — fall through to other options */ }
+    }
     if (window.storage && typeof window.storage.set === 'function'){
       try{
         await window.storage.set(key, JSON.stringify(val), true);
