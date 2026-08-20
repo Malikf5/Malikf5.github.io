@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Night Reel — Movie Roulette</title>
+
+<!-- Add-to-home-screen support -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0c0a13">
+<link rel="icon" href="icon-192.png">
+<!-- iOS ignores the manifest above and needs its own tags -->
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Night Reel">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -385,6 +396,12 @@
     color:var(--accent-2);
     border-color:var(--border);
   }
+  #undo-button{
+    background:transparent;
+    color:var(--ink-soft);
+    border-color:var(--border);
+  }
+  #undo-button:not(:disabled):hover{color:var(--danger);}
 
   /* Movie bank */
   section.panel{
@@ -474,6 +491,92 @@
     color:var(--danger);
     margin:0 0 14px;
   }
+  .bulk-add-form{
+    display:none;
+    flex-direction:column;
+    gap:8px;
+    margin:10px 0 16px;
+    padding:12px 14px;
+    background:var(--panel-2);
+    border:1px solid var(--border);
+    border-radius:10px;
+  }
+  .bulk-add-form.open{display:flex;}
+  .bulk-add-hint{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  #bulk-add-textarea{
+    width:100%;
+    padding:10px 12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    resize:vertical;
+  }
+  .bulk-add-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  #bulk-add-submit{
+    background:var(--accent-2);
+    color:#fff8ef;
+    padding:8px 16px;
+    font-size:13px;
+    border-radius:8px;
+  }
+  .bulk-add-result{
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .bulk-remove-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:10px;
+  }
+  #bulk-remove-button{
+    background:var(--danger);
+    color:#fff8ef;
+    padding:8px 16px;
+    font-size:13px;
+    border-radius:8px;
+  }
+  #bulk-remove-button:disabled{opacity:.4; cursor:not-allowed;}
+  .bank-toolbar{
+    display:flex;
+    gap:8px;
+    margin:14px 0 10px;
+    flex-wrap:wrap;
+  }
+  #bank-filter-input{
+    flex:1;
+    min-width:140px;
+    padding:8px 12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+  }
+  #bank-sort-select{
+    padding:8px 10px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    cursor:pointer;
+  }
   .movie-list-header{
     display:flex;
     align-items:center;
@@ -485,6 +588,7 @@
     text-transform:uppercase;
     color:var(--ink-soft);
   }
+  .movie-list-header .check-col{width:18px; flex-shrink:0;}
   .movie-list-header .badge{width:28px; flex-shrink:0;}
   .movie-list-header .title{flex:1;}
   .movie-list-header .by{min-width:72px; text-align:right;}
@@ -505,6 +609,18 @@
     padding:8px 10px;
     border-radius:10px;
     background:var(--panel-2);
+  }
+  .movie-row .check{
+    width:18px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+  }
+  .movie-row .check input[type="checkbox"]{
+    width:16px;
+    height:16px;
+    accent-color:var(--accent-2);
+    cursor:pointer;
   }
   .movie-row .badge{
     font-family:'JetBrains Mono', monospace;
@@ -866,9 +982,9 @@
 <body class="light-mode">
   <div id="login-gate" class="login-gate">
     <div class="login-box">
-      <p class="eyebrow">Night Reel</p>
+      <p class="eyebrow">Spooky Movie Roulette</p>
       <h2>Enter your access code</h2>
-      <p class="login-sub">This code just identifies who's using the bank — it's not real security. Anyone with the page's source can read the code list.</p>
+      <p class="login-sub">This code just identifies who's using the bank</p>
       <input type="password" id="login-code" placeholder="Access code" autocomplete="off">
       <button id="login-submit">Enter</button>
       <p id="login-error" class="login-error"></p>
@@ -1098,13 +1214,6 @@
       <path class="bg-deco-body" d="M16 58 L10 90 M24 58 L30 90" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
     </svg>
 
-<!--     <svg class="bg-deco bg-raven bg-raven--1" viewBox="0 0 50 30">
-      <path d="M25 15 Q10 6 2 14 Q14 14 20 18 Q10 22 4 26 Q18 26 25 20 Q34 26 46 24 Q38 20 30 18 Q40 12 48 12 Q36 8 25 15 Z"/>
-    </svg>
-    <svg class="bg-deco bg-raven bg-raven--2" viewBox="0 0 50 30">
-       <path d="M25 15 Q10 6 2 14 Q14 14 20 18 Q10 22 4 26 Q18 26 25 20 Q34 26 46 24 Q38 20 30 18 Q40 12 48 12 Q36 8 25 15 Z"/>
-    </svg>
--->
     <svg class="bg-deco bg-tree bg-tree--1" viewBox="0 0 60 90">
       <path class="bg-deco-body" d="M28 90 L30 58 Q19 53 13 38 M30 58 Q41 52 47 36 M30 58 L30 38 Q22 27 15 12 M30 38 Q39 26 46 8 M30 24 Q25 16 19 6 M15 38 Q9 32 3 28 M47 36 Q54 32 60 36 M13 38 Q6 40 1 46 M47 36 Q55 40 59 47" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
     </svg>
@@ -1205,9 +1314,9 @@
     </div>
 
     <header class="hero">
-      <p class="eyebrow">Movie Roulette</p>
-      <h1>Night Reel</h1>
-      <p class="tagline">One spin, one film. Let the wheel choose tonight's watch.</p>
+      <p class="eyebrow">Spooky Movie Roulette</p>
+      <h1>Wheel of Fear</h1>
+      <p class="tagline">One spin, one film. Let the wheel choose what to watch.</p>
     </header>
 
     <div class="wheel-stage">
@@ -1225,12 +1334,13 @@
         </div>
       </div>
 
-      <div id="spin-result">Press spin to draw tonight's film.</div>
+      <div id="spin-result">Press spin to select the next film.</div>
 
       <div class="controls">
         <button id="spin-button">Spin the wheel</button>
         <button id="reset-button">Reset</button>
         <button id="bank-toggle">Show movie bank</button>
+        <button id="undo-button" disabled title="Nothing to undo yet">Undo</button>
       </div>
 
       <div class="hub-image-control">
@@ -1268,7 +1378,30 @@
         <button id="add-movie-button">Add</button>
       </div>
       <p id="add-warning" class="add-warning"></p>
+
+      <button id="bulk-add-toggle" class="link-btn">Bulk add titles</button>
+      <div class="bulk-add-form" id="bulk-add-form">
+        <p class="bulk-add-hint">One title per line. Duplicates already in the bank or watch history are skipped automatically.</p>
+        <textarea id="bulk-add-textarea" rows="6" placeholder="Hocus Pocus&#10;Beetlejuice&#10;The Shining"></textarea>
+        <div class="bulk-add-row">
+          <button id="bulk-add-submit">Add all</button>
+          <span id="bulk-add-result" class="bulk-add-result"></span>
+        </div>
+      </div>
+
+      <div class="bank-toolbar">
+        <input type="text" id="bank-filter-input" placeholder="Filter titles…" autocomplete="off">
+        <select id="bank-sort-select">
+          <option value="number">Sort: Number</option>
+          <option value="title">Sort: Title (A–Z)</option>
+          <option value="dateAdded-desc">Sort: Newest added</option>
+          <option value="dateAdded-asc">Sort: Oldest added</option>
+          <option value="addedBy">Sort: Added by</option>
+        </select>
+      </div>
+
       <div class="movie-list-header">
+        <span class="check-col"></span>
         <span class="badge">No.</span>
         <span class="title">Title</span>
         <span class="by">Added by</span>
@@ -1276,6 +1409,11 @@
         <span class="header-spacer"></span>
       </div>
       <div id="movie-list"></div>
+      <div class="bulk-remove-row">
+        <button id="bulk-remove-button" disabled>Remove selected (<span id="bulk-remove-count">0</span>)</button>
+        <button id="bulk-select-all" class="link-btn">Select all</button>
+        <button id="bulk-select-none" class="link-btn">Clear selection</button>
+      </div>
       <p class="bank-count" id="bank-count"></p>
     </section>
 
@@ -1362,7 +1500,8 @@
     hubImage:'nightReel_hubImage',
     hubImageZoom:'nightReel_hubImageZoom',
     hubImageX:'nightReel_hubImageX',
-    hubImageY:'nightReel_hubImageY'
+    hubImageY:'nightReel_hubImageY',
+    bankSort:'nightReel_bankSort'
   };
 
   // Local, per-browser preferences (theme, bank panel open/closed, hub
@@ -1408,12 +1547,21 @@
   const SYNC_ENDPOINT = 'https://moveinight-reel-sync.malikhub.workers.dev'; // Cloudflare Worker URL
   const SYNC_SECRET = 'entrusts.15blockbuster.!mortgaging';   // must match the Worker's SYNC_SECRET value exactly
 
+  // Tracks the last known Worker-side version per key (from the
+  // X-Sync-Version response header), so Undo can ask for a conditional
+  // write later without needing a separate round-trip just to check it.
+  // Only meaningful when SYNC_ENDPOINT is actually in use — see the
+  // conflict-detection note on saveSharedConditional below.
+  const syncVersions = {};
+
   async function loadShared(key, fallback){
     if (SYNC_ENDPOINT){
       try{
         const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`, {
           headers: {'X-Sync-Key': SYNC_SECRET}
         });
+        const v = res.headers.get('X-Sync-Version');
+        if (v !== null) syncVersions[key] = Number(v);
         if (res.ok){
           const value = await res.json();
           return (value !== null && value !== undefined) ? value : fallback;
@@ -1428,6 +1576,10 @@
     }
     return load(key, fallback);
   }
+
+  // Unconditional save — used everywhere except Undo. Last-write-wins, same
+  // as before; still benefits from the Worker's automatic versioning and
+  // rolling backup history, it just doesn't check for conflicts itself.
   async function saveShared(key, val){
     if (SYNC_ENDPOINT){
       try{
@@ -1436,6 +1588,8 @@
           headers: {'Content-Type': 'application/json', 'X-Sync-Key': SYNC_SECRET},
           body: JSON.stringify(val)
         });
+        const v = res.headers.get('X-Sync-Version');
+        if (v !== null) syncVersions[key] = Number(v);
         if (res.ok) return;
       }catch(e){ /* Worker unreachable — fall through to other options */ }
     }
@@ -1446,6 +1600,47 @@
       }catch(e){ /* fall back below */ }
     }
     save(key, val);
+  }
+
+  // Conditional save — used only by Undo. Sends the version the snapshot
+  // was taken against; the Worker rejects the write with 409 if someone
+  // else's change landed in between, instead of silently overwriting it.
+  //
+  // HONEST LIMIT: this only works when SYNC_ENDPOINT is configured (the
+  // Worker is what actually tracks versions and enforces the check). If
+  // it's not configured — falling back to window.storage or localStorage —
+  // there's no version authority to check against, so this degrades to an
+  // unconditional write in that case; conflicts genuinely can't be
+  // detected without a real backend.
+  async function saveSharedConditional(key, val, expectedVersion){
+    if (SYNC_ENDPOINT && expectedVersion !== undefined && expectedVersion !== null){
+      try{
+        const res = await fetch(`${SYNC_ENDPOINT}/?key=${encodeURIComponent(key)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Sync-Key': SYNC_SECRET,
+            'X-Expected-Version': String(expectedVersion)
+          },
+          body: JSON.stringify(val)
+        });
+        const v = res.headers.get('X-Sync-Version');
+        if (res.status === 409){
+          const data = await res.json().catch(() => ({}));
+          return {ok:false, conflict:true, currentValue: data.currentValue, currentVersion: data.currentVersion};
+        }
+        if (res.ok){
+          if (v !== null) syncVersions[key] = Number(v);
+          return {ok:true, conflict:false};
+        }
+        return {ok:false, conflict:false};
+      }catch(e){
+        return {ok:false, conflict:false, networkError:true};
+      }
+    }
+    // No real version authority available — just do a normal save.
+    await saveShared(key, val);
+    return {ok:true, conflict:false};
   }
 
   // dateAdded is null for the built-in starting list, since these weren't
@@ -1471,6 +1666,7 @@
   const resultEl = document.getElementById('spin-result');
   const spinBtn = document.getElementById('spin-button');
   const resetBtn = document.getElementById('reset-button');
+  const undoBtn = document.getElementById('undo-button');
   const themeToggle = document.getElementById('theme-toggle');
   const homeBtn = document.getElementById('home-button');
   const bankToggle = document.getElementById('bank-toggle');
@@ -1481,6 +1677,20 @@
   const addMovieBtn = document.getElementById('add-movie-button');
   const movieSuggestionsEl = document.getElementById('movie-suggestions');
   const addWarningEl = document.getElementById('add-warning');
+  const bulkAddToggleBtn = document.getElementById('bulk-add-toggle');
+  const bulkAddForm = document.getElementById('bulk-add-form');
+  const bulkAddTextarea = document.getElementById('bulk-add-textarea');
+  const bulkAddSubmitBtn = document.getElementById('bulk-add-submit');
+  const bulkAddResultEl = document.getElementById('bulk-add-result');
+  const bulkRemoveBtn = document.getElementById('bulk-remove-button');
+  const bulkRemoveCountEl = document.getElementById('bulk-remove-count');
+  const bulkSelectAllBtn = document.getElementById('bulk-select-all');
+  const bulkSelectNoneBtn = document.getElementById('bulk-select-none');
+  let selectedForRemoval = new Set();
+  const bankFilterInput = document.getElementById('bank-filter-input');
+  const bankSortSelect = document.getElementById('bank-sort-select');
+  let bankFilterText = '';
+  let bankSort = load(KEYS.bankSort, 'number');
   const resultsBody = document.querySelector('#results-table tbody');
 
   // ---------- Confirm modal (avoids relying on window.confirm, which
@@ -1503,6 +1713,110 @@
   confirmOkBtn.addEventListener('click', () => closeConfirm(true));
   confirmCancelBtn.addEventListener('click', () => closeConfirm(false));
   confirmOverlay.addEventListener('click', (e) => { if (e.target === confirmOverlay) closeConfirm(false); });
+
+  // One-button variant of the same modal, for surfacing a message the
+  // person just needs to acknowledge (e.g. an undo conflict) rather than
+  // a yes/no decision.
+  async function noticeDialog(message){
+    confirmCancelBtn.style.display = 'none';
+    confirmOkBtn.textContent = 'OK';
+    await confirmDialog(message);
+    confirmCancelBtn.style.display = '';
+    confirmOkBtn.textContent = 'Confirm';
+  }
+
+  // ---------------------------------------------------------------------
+  // Undo — session-only, last 5 actions, conflict-aware
+  // ---------------------------------------------------------------------
+  // Every mutating action (spin, add, remove, bulk add, bulk remove, reset)
+  // pushes a full snapshot of movies/pool/results onto a small stack BEFORE
+  // it makes its change. Undo pops the most recent snapshot and restores
+  // it wholesale — since it's the complete state rather than a diff, this
+  // works correctly even for "wipe everything" actions like Reset or a
+  // bulk removal of the entire bank: the snapshot from right before that
+  // action already has everything intact.
+  //
+  // This lives in memory only (cleared on page reload), matching "within a
+  // session." Each snapshot also records the Worker's version number for
+  // movies/pool/results at the moment it was taken. When Undo runs, it
+  // sends those versions back as a condition on the write (see
+  // saveSharedConditional above) — if the Worker's current version no
+  // longer matches (because someone else saved a change in the meantime),
+  // the write is refused rather than silently overwriting their change,
+  // and the person is told plainly what happened.
+  //
+  // This is scoped to Undo specifically, not the whole app: every other
+  // action (add, remove, spin, etc.) still saves unconditionally —
+  // last-write-wins, as before. Making every action conflict-safe would
+  // need each one restructured to retry against fresh data, which is a
+  // bigger change than what was asked for here.
+  const MAX_UNDO = 5;
+  let undoStack = [];
+
+  function pushUndoSnapshot(label){
+    undoStack.push({
+      label,
+      movies: JSON.parse(JSON.stringify(movies)),
+      pool: [...pool],
+      results: JSON.parse(JSON.stringify(results)),
+      versions: {
+        movies: syncVersions[KEYS.movies],
+        pool: syncVersions[KEYS.pool],
+        results: syncVersions[KEYS.results]
+      }
+    });
+    if (undoStack.length > MAX_UNDO) undoStack.shift();
+    updateUndoUI();
+  }
+
+  function updateUndoUI(){
+    const top = undoStack[undoStack.length - 1];
+    undoBtn.disabled = !top;
+    undoBtn.title = top ? `Undo: ${top.label}` : 'Nothing to undo yet';
+  }
+
+  async function undoLastAction(){
+    const snap = undoStack[undoStack.length - 1];
+    if (!snap) return;
+
+    undoBtn.disabled = true;
+
+    const [moviesRes, poolRes, resultsRes] = await Promise.all([
+      saveSharedConditional(KEYS.movies, snap.movies, snap.versions.movies),
+      saveSharedConditional(KEYS.pool, snap.pool, snap.versions.pool),
+      saveSharedConditional(KEYS.results, snap.results, snap.versions.results)
+    ]);
+
+    const conflict = moviesRes.conflict || poolRes.conflict || resultsRes.conflict;
+
+    if (conflict){
+      // Don't apply a partial or stale undo over top of someone else's
+      // change. Drop the whole stack — its snapshots' versions no longer
+      // line up with what's actually on the server — and refresh to the
+      // real current state instead of guessing.
+      undoStack = [];
+      movies = await loadShared(KEYS.movies, movies);
+      pool = await loadShared(KEYS.pool, pool);
+      results = await loadShared(KEYS.results, results);
+      selectedForRemoval.clear();
+      drawWheel();
+      renderResults();
+      renderBank();
+      updateUndoUI();
+      await noticeDialog('Someone else changed the shared data since this action, so undo was cancelled to avoid overwriting their change. The page has been refreshed to the current version.');
+      return;
+    }
+
+    undoStack.pop();
+    movies = snap.movies;
+    pool = snap.pool;
+    results = snap.results;
+    selectedForRemoval.clear();
+    drawWheel();
+    renderResults();
+    renderBank();
+    updateUndoUI();
+  }
 
   function cssVar(name){
     return getComputedStyle(document.body).getPropertyValue(name).trim();
@@ -1725,6 +2039,8 @@
     const movieTitle = titleFor(selectedNumber);
     resultEl.innerHTML = `The reel stopped on <span class="num">#${selectedNumber}</span> — ${escapeHtml(movieTitle)}`;
 
+    pushUndoSnapshot(`Spin: ${movieTitle}`);
+
     const entry = {number: selectedNumber, movieTitle, date:''};
     results.push(entry);
     saveShared(KEYS.results, results);
@@ -1800,13 +2116,64 @@
     return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
   }
 
+  function updateBulkRemoveUI(){
+    bulkRemoveCountEl.textContent = selectedForRemoval.size;
+    bulkRemoveBtn.disabled = selectedForRemoval.size === 0;
+  }
+
+  // Filtering + sorting for the movie bank list. Shared between renderBank
+  // (so what's drawn matches what's filtered/sorted) and bulkSelectAll (so
+  // "select all" only grabs what's currently visible, not the whole bank).
+  function getVisibleMovies(){
+    const query = bankFilterText.trim().toLowerCase();
+    let list = query
+      ? movies.filter(m => m.title.toLowerCase().includes(query))
+      : [...movies];
+
+    switch (bankSort){
+      case 'title':
+        list.sort((a,b) => a.title.localeCompare(b.title));
+        break;
+      case 'dateAdded-desc':
+        list.sort((a,b) => (b.dateAdded || '').localeCompare(a.dateAdded || ''));
+        break;
+      case 'dateAdded-asc':
+        list.sort((a,b) => (a.dateAdded || '').localeCompare(b.dateAdded || ''));
+        break;
+      case 'addedBy':
+        list.sort((a,b) => (a.addedBy || '\uffff').localeCompare(b.addedBy || '\uffff'));
+        break;
+      case 'number':
+      default:
+        list.sort((a,b) => a.number - b.number);
+    }
+    return list;
+  }
+
   function renderBank(){
     movieListEl.innerHTML = '';
-    const sorted = [...movies].sort((a,b)=>a.number-b.number);
-    sorted.forEach(m => {
+    // drop any selected numbers that no longer exist (e.g. removed elsewhere)
+    const validNumbers = new Set(movies.map(m => m.number));
+    selectedForRemoval.forEach(n => { if (!validNumbers.has(n)) selectedForRemoval.delete(n); });
+
+    const visible = getVisibleMovies();
+    visible.forEach(m => {
       const row = document.createElement('div');
       const inPool = pool.includes(m.number);
       row.className = 'movie-row' + (inPool ? '' : ' drawn');
+
+      const checkWrap = document.createElement('span');
+      checkWrap.className = 'check';
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = selectedForRemoval.has(m.number);
+      checkbox.setAttribute('aria-label', `Select "${m.title}" for bulk removal`);
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) selectedForRemoval.add(m.number);
+        else selectedForRemoval.delete(m.number);
+        updateBulkRemoveUI();
+      });
+      checkWrap.appendChild(checkbox);
 
       const badge = document.createElement('span');
       badge.className = 'badge';
@@ -1830,6 +2197,7 @@
       removeBtn.textContent = 'Remove';
       removeBtn.addEventListener('click', () => removeMovie(m.number));
 
+      row.appendChild(checkWrap);
       row.appendChild(badge);
       row.appendChild(title);
       row.appendChild(by);
@@ -1837,7 +2205,11 @@
       row.appendChild(removeBtn);
       movieListEl.appendChild(row);
     });
-    bankCountEl.textContent = `${pool.length} in the wheel · ${movies.length} total`;
+
+    bankCountEl.textContent = bankFilterText.trim()
+      ? `${visible.length} of ${movies.length} shown · ${pool.length} in the wheel`
+      : `${pool.length} in the wheel · ${movies.length} total`;
+    updateBulkRemoveUI();
   }
 
   // ---------- Duplicate check + live search ----------
@@ -1926,6 +2298,7 @@
     }
     const nextNum = movies.reduce((max,m)=>Math.max(max,m.number),0) + 1;
     const today = new Date().toISOString().slice(0,10);
+    pushUndoSnapshot(`Add "${val}"`);
     movies.push({number: nextNum, title: val, dateAdded: today, addedBy: currentUser});
     pool.push(nextNum);
     saveShared(KEYS.movies, movies);
@@ -1943,8 +2316,83 @@
     if (!movie) return;
     const ok = await confirmDialog(`Remove "${movie.title}" from the bank?`);
     if (!ok) return;
+    pushUndoSnapshot(`Remove "${movie.title}"`);
     movies = movies.filter(m => m.number !== number);
     pool = pool.filter(n => n !== number);
+    selectedForRemoval.delete(number);
+    saveShared(KEYS.movies, movies);
+    saveShared(KEYS.pool, pool);
+    drawWheel();
+    renderBank();
+  }
+
+  // ---------- Bulk add ----------
+  function toggleBulkAddForm(){
+    const isOpen = bulkAddForm.classList.contains('open');
+    bulkAddForm.classList.toggle('open', !isOpen);
+    if (!isOpen) bulkAddTextarea.focus();
+  }
+
+  function bulkAddSubmit(){
+    const lines = bulkAddTextarea.value
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean);
+    if (lines.length === 0) return;
+
+    let nextNum = movies.reduce((max,m)=>Math.max(max,m.number),0) + 1;
+    const today = new Date().toISOString().slice(0,10);
+    let added = 0, skipped = 0;
+
+    pushUndoSnapshot(`Bulk add (${lines.length} title${lines.length === 1 ? '' : 's'} pasted)`);
+
+    lines.forEach(line => {
+      // findExactDuplicate checks the live `movies` array, so titles added
+      // earlier in this same paste are already caught as duplicates too.
+      if (findExactDuplicate(line)){
+        skipped++;
+        return;
+      }
+      movies.push({number: nextNum, title: line, dateAdded: today, addedBy: currentUser});
+      pool.push(nextNum);
+      nextNum++;
+      added++;
+    });
+
+    if (added > 0){
+      saveShared(KEYS.movies, movies);
+      saveShared(KEYS.pool, pool);
+    } else {
+      undoStack.pop(); // nothing actually changed — don't leave a no-op undo entry
+      updateUndoUI();
+    }
+
+    bulkAddResultEl.textContent = skipped > 0
+      ? `Added ${added}, skipped ${skipped} duplicate${skipped === 1 ? '' : 's'}.`
+      : `Added ${added}.`;
+    bulkAddTextarea.value = '';
+    drawWheel();
+    renderBank();
+  }
+
+  // ---------- Bulk remove ----------
+  function bulkSelectAll(){
+    getVisibleMovies().forEach(m => selectedForRemoval.add(m.number));
+    renderBank();
+  }
+  function bulkSelectNone(){
+    selectedForRemoval.clear();
+    renderBank();
+  }
+  async function bulkRemoveSelected(){
+    const count = selectedForRemoval.size;
+    if (count === 0) return;
+    const ok = await confirmDialog(`Remove ${count} selected movie${count === 1 ? '' : 's'} from the bank?`);
+    if (!ok) return;
+    pushUndoSnapshot(`Remove ${count} movie${count === 1 ? '' : 's'}`);
+    movies = movies.filter(m => !selectedForRemoval.has(m.number));
+    pool = pool.filter(n => !selectedForRemoval.has(n));
+    selectedForRemoval.clear();
     saveShared(KEYS.movies, movies);
     saveShared(KEYS.pool, pool);
     drawWheel();
@@ -1955,6 +2403,7 @@
   async function resetGame(){
     const ok = await confirmDialog('Reset the wheel and clear your watch history?');
     if (!ok) return;
+    pushUndoSnapshot('Reset (cleared watch history & pool)');
     pool = movies.map(m=>m.number);
     results = [];
     rotation = 0;
@@ -1994,6 +2443,7 @@
   async function init(){
     applyTheme(theme);
     initHubImageControl();
+    bankSortSelect.value = bankSort;
 
     const defaultMovies = defaultTitles.map((t,i)=>({number:i+1, title:t, dateAdded:null, addedBy:null}));
     movies = await loadShared(KEYS.movies, defaultMovies);
@@ -2009,6 +2459,7 @@
 
   spinBtn.addEventListener('click', spin);
   resetBtn.addEventListener('click', resetGame);
+  undoBtn.addEventListener('click', undoLastAction);
   themeToggle.addEventListener('click', toggleTheme);
   bankToggle.addEventListener('click', toggleBank);
   addMovieBtn.addEventListener('click', addMovie);
@@ -2017,6 +2468,20 @@
   newMovieInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !addMovieBtn.disabled) addMovie(); });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.add-input-wrap')) renderSuggestions([]);
+  });
+  bulkAddToggleBtn.addEventListener('click', toggleBulkAddForm);
+  bulkAddSubmitBtn.addEventListener('click', bulkAddSubmit);
+  bulkSelectAllBtn.addEventListener('click', bulkSelectAll);
+  bulkSelectNoneBtn.addEventListener('click', bulkSelectNone);
+  bulkRemoveBtn.addEventListener('click', bulkRemoveSelected);
+  bankFilterInput.addEventListener('input', () => {
+    bankFilterText = bankFilterInput.value;
+    renderBank();
+  });
+  bankSortSelect.addEventListener('change', () => {
+    bankSort = bankSortSelect.value;
+    save(KEYS.bankSort, bankSort);
+    renderBank();
   });
   homeBtn.addEventListener('click', () => { /* reserved for future use */ });
 
