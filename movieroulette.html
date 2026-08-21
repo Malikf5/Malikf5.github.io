@@ -1369,7 +1369,7 @@
 
     <section class="panel" id="bank-panel" style="display:none;">
       <h2>Movie bank</h2>
-      <p class="panel-sub">Add new titles or remove ones you're done with. Removing a title takes it out of the wheel; past results stay in your history.</p>
+      <p class="panel-sub">Add new titles. Removing a title takes it out of the wheel; past results stay in watch history.</p>
       <div class="add-row">
         <div class="add-input-wrap">
           <input type="text" id="new-movie-input" placeholder="Add a movie title…" maxlength="120" autocomplete="off">
@@ -1379,7 +1379,7 @@
       </div>
       <p id="add-warning" class="add-warning"></p>
 
-      <button id="bulk-add-toggle" class="link-btn">Bulk add titles</button>
+      <button id="bulk-add-toggle" class="link-btn">Bulk add movies</button>
       <div class="bulk-add-form" id="bulk-add-form">
         <p class="bulk-add-hint">One title per line. Duplicates already in the bank or watch history are skipped automatically.</p>
         <textarea id="bulk-add-textarea" rows="6" placeholder="Hocus Pocus&#10;Beetlejuice&#10;The Shining"></textarea>
@@ -1403,7 +1403,7 @@
       <div class="movie-list-header">
         <span class="check-col"></span>
         <span class="badge">No.</span>
-        <span class="title">Title</span>
+        <span class="title">Movie Title</span>
         <span class="by">Added by</span>
         <span class="added">Date added</span>
         <span class="header-spacer"></span>
@@ -1430,31 +1430,31 @@
 (function(){
   "use strict";
 
-  const defaultTitles = [
-    "Halloweentown","Halloweentown 2: Kalabar's Revenge","Halloweentown High","Return to Halloweentown",
-    "Twitches","Twitches Too","Scream Team","Don't Look Under the Bed","Haunted Mansion","Hocus Pocus",
-    "Mom's Got a Date With a Vampire","The Nightmare Before Christmas","Phantom of the Megaplex",
-    "Scary Godmother: Halloween Spooktacular","Scary Godmother 2: The Revenge of Jimmy","The Conjuring",
-    "The Conjuring 2","The Conjuring: The Devil Made me Do It","The Nun","Annabelle",
-    "Annabelle: Comes Home","Annabelle: Creation","The Curse Of Llorona","IT","IT: Chapter 2",
-    "Insidious","Insidious 2","Insidious Chapter 3","Insidious: Last Key","The Ring",
-    "The Ring 2","The Grudge","Hereditary","Drag Me to Hell","Apostle","The Witch",
-    "Sinister","LongLegs","Trap","Immaculate","The Exorcism of Emily Rose",
-    "The Ritual","As Above so Below","Get Out","Halloween (2018)","Halloween Kills",
-    "Halloween Ends","A Nightmare on Elm Street (2010)","Freddy vs Jason","Jason X","Jason Goes to Hell",
-    "Friday the 13th (2009)","Candyman","Orphan","Orphan: First Kill","The Craft",
-    "Scream","Scream 2","Scream 3","Scream 4","Scream (2022)",
-    "Midsommar","The Invisible Man","Pet Semetary","Don't Breathe","Don't Breathe 2",
-    "The Shining","Doctor Sleep","Escape Room","A Quiet Place","A Quiet Place 2",
-    "Stay Alive","The Pope's Exorcist","The Menu","Parasite","You're Next",
-    "Malignant","Fear Street Part 1: 1994","Fear Street Part 2: 1978","Fear Street Part 3: 1666","The Old Ways",
-    "Missing","No One Gets Out Alive","Hellhole","Umma","Dawn of the Dead",
-    "Shaun of the Dead","Cocaine Bear","Smile","M3GAN","Train to Busan",
-    "Paranormal Activity","Paranormal Activity 2","Evil Dead Rises","#Alive","The Wailing",
-    "I Saw the Devil","Thirst","A Tale of Two Sisters","Ghostbusters","The Witches (1990)",
-    "Sleepy Hollow","Monster House","Ghostbusters 2","Zombieland","Zombieland: Double Tap",
-    "The Watchers","28 Weeks Later","Practical Magic","The Little Vampire"
-  ];
+  <!-- const defaultTitles = [ -->
+    <!-- "Halloweentown","Halloweentown 2: Kalabar's Revenge","Halloweentown High","Return to Halloweentown", -->
+    <!-- "Twitches","Twitches Too","Scream Team","Don't Look Under the Bed","Haunted Mansion","Hocus Pocus", -->
+    <!-- "Mom's Got a Date With a Vampire","The Nightmare Before Christmas","Phantom of the Megaplex", -->
+    <!-- "Scary Godmother: Halloween Spooktacular","Scary Godmother 2: The Revenge of Jimmy","The Conjuring", -->
+    <!-- "The Conjuring 2","The Conjuring: The Devil Made me Do It","The Nun","Annabelle", -->
+    <!-- "Annabelle: Comes Home","Annabelle: Creation","The Curse Of Llorona","IT","IT: Chapter 2", -->
+    <!-- "Insidious","Insidious 2","Insidious Chapter 3","Insidious: Last Key","The Ring", -->
+    <!-- "The Ring 2","The Grudge","Hereditary","Drag Me to Hell","Apostle","The Witch", -->
+    <!-- "Sinister","LongLegs","Trap","Immaculate","The Exorcism of Emily Rose", -->
+    <!-- "The Ritual","As Above so Below","Get Out","Halloween (2018)","Halloween Kills", -->
+    <!-- "Halloween Ends","A Nightmare on Elm Street (2010)","Freddy vs Jason","Jason X","Jason Goes to Hell", -->
+    <!-- "Friday the 13th (2009)","Candyman","Orphan","Orphan: First Kill","The Craft", -->
+    <!-- "Scream","Scream 2","Scream 3","Scream 4","Scream (2022)", -->
+    <!-- "Midsommar","The Invisible Man","Pet Semetary","Don't Breathe","Don't Breathe 2", -->
+    <!-- "The Shining","Doctor Sleep","Escape Room","A Quiet Place","A Quiet Place 2", -->
+    <!-- "Stay Alive","The Pope's Exorcist","The Menu","Parasite","You're Next", -->
+    <!-- "Malignant","Fear Street Part 1: 1994","Fear Street Part 2: 1978","Fear Street Part 3: 1666","The Old Ways", -->
+    <!-- "Missing","No One Gets Out Alive","Hellhole","Umma","Dawn of the Dead", -->
+    <!-- "Shaun of the Dead","Cocaine Bear","Smile","M3GAN","Train to Busan", -->
+    <!-- "Paranormal Activity","Paranormal Activity 2","Evil Dead Rises","#Alive","The Wailing", -->
+    <!-- "I Saw the Devil","Thirst","A Tale of Two Sisters","Ghostbusters","The Witches (1990)", -->
+    <!-- "Sleepy Hollow","Monster House","Ghostbusters 2","Zombieland","Zombieland: Double Tap", -->
+    <!-- "The Watchers","28 Weeks Later","Practical Magic","The Little Vampire" -->
+  <!-- ]; -->
 
   // ---------------------------------------------------------------------
   // Movie bank data source — for later use
